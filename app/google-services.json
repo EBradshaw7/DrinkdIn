@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "312579183906",
+    "firebase_url": "https://drinkdin-1481198480826.firebaseio.com",
+    "project_id": "drinkdin-1481198480826",
+    "storage_bucket": "drinkdin-1481198480826.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312579183906:android:f83f256be40b17ed",
+        "android_client_info": {
+          "package_name": "com.example.eoghan.drinkdin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312579183906-vrh15hi7kj01s90fsfrmuvb2pgu32ksf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkQyZ3aM0ocGKhTBv1K7jdawEzBPcJPaQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,34 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="fill_parent" android:orientation="vertical">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    tools:context="com.example.eoghan.drinkdin.phouseMap" />
+
+
+<LinearLayout
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+    <Button
+        android:text="Check in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3" />
+
+    <TextView
+        android:text="First things first. We are passionate about beer. And not just our beer. We are passionate about all good beer. That's why in 1989 Liam LaHart and Oliver Hughes opened the first Porterhouse and specialised in importing various beers from around the world with a keen eye on Belgium"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/pHouseTv"
+        android:layout_centerHorizontal="true" />
+
+</LinearLayout>
+</LinearLayout>

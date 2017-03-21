@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.eoghan.drinkdin.Phouse" >
+
+    <fragment
+        android:id="@+id/city_list_frag"
+        android:layout_width="171dp"
+        android:layout_height="440dp"
+        tools:layout="@layout/activity_phousefrag" />
+
+
+    <fragment
+        android:id="@+id/the_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.MapFragment"/>#
+
+   </RelativeLayout>
