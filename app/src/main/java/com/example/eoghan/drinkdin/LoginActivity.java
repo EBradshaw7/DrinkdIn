@@ -17,7 +17,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-//ryan listens to annie
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
