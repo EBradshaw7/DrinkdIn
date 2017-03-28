@@ -5,39 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.eoghan.drinkdin.NewUserActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical">
+
 
         <EditText
             android:inputType="textEmailAddress"
-            android:text=" "
-            android:id="@+id/emailET"
+            android:text=""
+            android:id="@+id/emET"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <EditText
             android:inputType="textPassword"
-            android:text=" "
-            android:id="@+id/pwET"
+            android:text=""
+            android:id="@+id/passwordET"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <Button
             android:text="Create"
-            android:id="@+id/btnDeg"
+            android:id="@+id/btnCreate"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <Button
             android:text="Already a user"
-            android:id="@+id/lgBT"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </LinearLayout>
-
 
   </RelativeLayout>

@@ -34,10 +34,10 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        btnRegister = (Button) findViewById(R.id.btnDeg);
-        etEmail = (EditText) findViewById(R.id.emailET);
-        etpword = (EditText) findViewById(R.id.pwET);
-        btnLogin = (Button) findViewById(R.id.lgBT);
+        btnRegister = (Button) findViewById(R.id.btnCreate);
+        etEmail = (EditText) findViewById(R.id.emET);
+        etpword = (EditText) findViewById(R.id.passwordET);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
         pbar = new ProgressDialog(this);
 
         btnRegister.setOnClickListener(this);
@@ -52,7 +52,7 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
 
 
     private void registerUser(){
-        String email= etEmail.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
         String password = etpword.getText().toString().trim();
         //String password = "1234";
         if(TextUtils.isEmpty(email)){
@@ -74,9 +74,8 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
                         if (task.isSuccessful()) {
                             finish();
                             startActivity(new Intent(new Intent(getApplicationContext(),UserAreaActivity.class)));
-                            //Toast.makeText(MainActivity.this, "well ddone", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(NewUserActivity.this, "fail, email already in use", Toast.LENGTH_LONG).show();
+                            Toast.makeText(NewUserActivity.this, "fail", Toast.LENGTH_LONG).show();
                         }
                         pbar.dismiss();
                     }
