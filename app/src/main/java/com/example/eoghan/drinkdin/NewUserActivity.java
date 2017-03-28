@@ -43,6 +43,7 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
         btnRegister.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
 
+        //if there is a user go to user area
         if (firebaseAuth.getCurrentUser() != null){
             finish();
             startActivity(new Intent(getApplicationContext(), UserAreaActivity.class));

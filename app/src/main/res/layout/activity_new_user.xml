@@ -1,36 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.eoghan.drinkdin.NewUserActivity">
 
-
-        <EditText
-            android:inputType="textEmailAddress"
-            android:text=""
-            android:id="@+id/emET"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
 
-        <EditText
-            android:inputType="textPassword"
-            android:text=""
-            android:id="@+id/passwordET"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <EditText
+                    android:inputType="textEmailAddress"
+                    android:text="eoghan.bradshaw@gmail.com"
+                    android:id="@+id/emET"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <Button
-            android:text="Create"
-            android:id="@+id/btnCreate"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <EditText
+                    android:inputType="textPassword"
+                    android:text="nahgoe"
+                    android:id="@+id/passwordET"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <Button
-            android:text="Already a user"
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <Button
+                    android:text="Create"
+                    android:id="@+id/btnCreate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-  </RelativeLayout>
+                <Button
+                    android:text="Already a user"
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+</RelativeLayout>
