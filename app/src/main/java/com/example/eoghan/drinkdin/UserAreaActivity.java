@@ -57,10 +57,10 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
 
 
     private void saveUserInfo() {
-        String name = editTextDrink.getText().toString().trim();
-        String add = editTextBar.getText().toString().trim();
+        String bar = editTextDrink.getText().toString().trim();
+        String drink = editTextBar.getText().toString().trim();
 
-        UserInformation userInformation = new UserInformation(name, add);
+        UserInformation userInformation = new UserInformation(bar, drink);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 

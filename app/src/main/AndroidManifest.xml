@@ -44,7 +44,8 @@
             android:label="@string/title_activity_wexford_st_crawl" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".NewUserActivity" />
-        <activity android:name=".UserAreaActivity"></activity>
+        <activity android:name=".UserAreaActivity" />
+        <activity android:name=".UserLocationActivity"></activity>
     </application>
 
 </manifest>

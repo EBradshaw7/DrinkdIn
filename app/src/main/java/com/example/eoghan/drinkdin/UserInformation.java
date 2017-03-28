@@ -5,16 +5,24 @@ package com.example.eoghan.drinkdin;
  */
 
 public class UserInformation {
-    public String name;
-    public String address;
+    public String bar;
+    public String drink;
 
     public UserInformation(){
 
     }
 
-    public UserInformation(String name, String address) {
-        this.name = name;
-        this.address = address;
+    public UserInformation(String bar, String drink) {
+        this.bar = bar;
+        this.drink = drink;
+    }
+
+    public String getBar() {
+        return bar;
+    }
+
+    public String getDrink() {
+        return drink;
     }
 }
 
