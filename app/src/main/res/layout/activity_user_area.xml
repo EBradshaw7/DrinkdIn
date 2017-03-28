@@ -40,15 +40,6 @@
         android:layout_marginBottom="81dp"
         android:text="Save" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="54dp"
-        android:layout_toEndOf="@+id/checkBtn"
-        android:text="Button" />
-
     <EditText
         android:id="@+id/etBar"
         android:layout_width="wrap_content"
@@ -57,8 +48,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="57dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="favurite Bar" />
+        android:hint="Favourite Bar"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etDrink"
@@ -68,6 +59,6 @@
         android:layout_below="@+id/etBar"
         android:layout_marginTop="33dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Favourite Drink" />
+        android:hint="Favourite Drink"
+        android:inputType="textPersonName" />
 </RelativeLayout>
