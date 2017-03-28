@@ -22,7 +22,6 @@
         </activity>
         <activity android:name=".CategoriesScreen" />
         <activity android:name=".CraftList" />
-        <activity android:name=".Phouse" />
         <activity android:name=".CrawlScreen" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

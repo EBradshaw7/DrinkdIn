@@ -5,10 +5,15 @@ package com.example.eoghan.drinkdin;
  */
 
 public class UserInformation {
+    public String phouseString;
     public String bar;
     public String drink;
 
     public UserInformation() {
+
+    }
+    public UserInformation(String phouseString) {
+        this.phouseString = phouseString;
 
     }
 
@@ -23,6 +28,10 @@ public class UserInformation {
 
     public String getDrink() {
         return drink;
+    }
+
+    public String getPhouseString() {
+        return phouseString;
     }
 }
 

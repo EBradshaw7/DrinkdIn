@@ -19,7 +19,7 @@ android:layout_width="match_parent" android:layout_height="wrap_content" android
         android:text="Check in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button3" />
+        android:id="@+id/checkInBtn" />
 
     <TextView
         android:text="First things first. We are passionate about beer. And not just our beer. We are passionate about all good beer. That's why in 1989 Liam LaHart and Oliver Hughes opened the first Porterhouse and specialised in importing various beers from around the world with a keen eye on Belgium"

@@ -7,6 +7,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,11 +17,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class phouseMap extends FragmentActivity implements OnMapReadyCallback {
+public class phouseMap extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
     double lat, lon;
+
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+
+    private Button btnAddToList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +40,11 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        btnAddToList = (Button) findViewById(R.id.checkInBtn);
+        btnAddToList.setOnClickListener(this);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
 
@@ -94,6 +111,31 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback {
 
             googleMap.addMarker(new MarkerOptions().position(myPosition).title("Current Location"));
 
+
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == btnAddToList) {
+            AddToList();
+        }
+    }
+
+    private void AddToList() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+
+            String phouseString = "Porterhouse";
+
+            UserInformation userInformation = new UserInformation(phouseString);
+
+            databaseReference.child(user.getUid()).setValue(userInformation);
+            Toast.makeText(this, "Added to check ins", Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
 
         }
     }
