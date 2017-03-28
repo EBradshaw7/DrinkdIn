@@ -8,7 +8,7 @@ public class UserInformation {
     public String bar;
     public String drink;
 
-    public UserInformation(){
+    public UserInformation() {
 
     }
 
