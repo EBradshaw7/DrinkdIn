@@ -109,7 +109,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
 
             LatLng myPosition = new LatLng(latitude, longitude);
 
-            googleMap.addMarker(new MarkerOptions().position(myPosition).title("Current Location"));
+            //googleMap.addMarker(new MarkerOptions().position(myPosition).title("Current Location"));
 
 
         }
@@ -126,7 +126,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+        if (user != null) {
 
             String phouseString = "Porterhouse";
 

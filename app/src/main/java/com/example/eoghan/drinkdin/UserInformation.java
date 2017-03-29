@@ -5,7 +5,7 @@ package com.example.eoghan.drinkdin;
  */
 
 public class UserInformation {
-    public String phouseString;
+    private String phouseString;
     public String bar;
     public String drink;
 
@@ -32,6 +32,10 @@ public class UserInformation {
 
     public String getPhouseString() {
         return phouseString;
+    }
+
+    public void setPhouseString(String phouseString) {
+        this.phouseString = phouseString;
     }
 }
 
