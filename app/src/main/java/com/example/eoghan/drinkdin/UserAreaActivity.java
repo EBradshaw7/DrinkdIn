@@ -19,6 +19,7 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth firebaseAuth;
     private Button buttonLogout;
+    private Button buttonBack;
     private Button btnCheckIn;
     private TextView tvWelcome;
     private DatabaseReference databaseReference;
@@ -51,6 +52,8 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
         btnSave = (Button) findViewById(R.id.saveBtn);
         btnCheckIn = (Button) findViewById(R.id.checkBtn);
         btnCheckIn.setOnClickListener(this);
+        buttonBack = (Button) findViewById(R.id.backBtn);
+        buttonBack.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         tvWelcome.setText("Welcome " +user.getEmail());
@@ -86,6 +89,10 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
         if (v == btnCheckIn){
             finish();
             startActivity(new Intent(this, UserLocationActivity.class));
+        }
+        if (v == buttonBack){
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
         }
     }
 }

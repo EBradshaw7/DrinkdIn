@@ -18,27 +18,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log out"
-        android:layout_alignBottom="@+id/checkBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp" />
+        android:layout_alignBaseline="@+id/saveBtn"
+        android:layout_alignBottom="@+id/saveBtn"
+        android:layout_alignEnd="@+id/etDrink" />
 
     <Button
         android:id="@+id/checkBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Check-ins"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/saveBtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp" />
+        android:layout_marginTop="17dp" />
 
     <Button
         android:id="@+id/saveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/lgoutBtn"
-        android:layout_alignStart="@+id/lgoutBtn"
-        android:layout_marginBottom="81dp"
-        android:text="Save" />
+        android:text="Save"
+        android:layout_below="@+id/etDrink"
+        android:layout_alignStart="@+id/etDrink"
+        android:layout_marginTop="72dp" />
 
     <EditText
         android:id="@+id/etBar"
@@ -61,4 +61,13 @@
         android:ems="10"
         android:hint="Favourite Drink"
         android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="Back" />
 </RelativeLayout>
