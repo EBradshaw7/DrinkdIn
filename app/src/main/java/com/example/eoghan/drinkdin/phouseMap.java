@@ -44,7 +44,13 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
         btnAddToList = (Button) findViewById(R.id.checkInBtn);
         btnAddToList.setOnClickListener(this);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        if (firebaseAuth.getCurrentUser() == null){
+            Toast.makeText(this, "Please sign in to access full features", Toast.LENGTH_LONG).show();
+
+        }
     }
 
 
