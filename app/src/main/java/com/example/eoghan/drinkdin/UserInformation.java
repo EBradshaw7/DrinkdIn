@@ -30,12 +30,5 @@ public class UserInformation {
         return drink;
     }
 
-    public String getPhouseString() {
-        return phouseString;
-    }
-
-    public void setPhouseString(String phouseString) {
-        this.phouseString = phouseString;
-    }
 }
 
