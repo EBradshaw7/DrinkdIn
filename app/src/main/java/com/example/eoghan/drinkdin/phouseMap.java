@@ -126,13 +126,12 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-        if (user == null) {
+        if (user != null) {
 
-           /* String phouseString = "Porterhouse";
+            String phouseCheckIn = "Porterhouse";
 
-            UserInformation userInformation = new UserInformation(phouseString);
-
-            databaseReference.child(user.getUid()).setValue(userInformation);*/
+            UserInformation UserInformation = new UserInformation(phouseCheckIn);
+            databaseReference.child(user.getUid()).setValue(UserInformation);
             Toast.makeText(this, "Added to check ins", Toast.LENGTH_LONG).show();
         }else {
             Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();

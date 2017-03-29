@@ -5,18 +5,17 @@ package com.example.eoghan.drinkdin;
  */
 
 public class UserInformation {
-    private String phouseString;
+    public String phouseCheckIn;
     public String bar;
     public String drink;
 
     public UserInformation() {
+        //blank Constructor
+    }
+    public UserInformation(String phouseCheckIn) {
+        this.phouseCheckIn = phouseCheckIn;
 
     }
-    public UserInformation(String phouseString) {
-        this.phouseString = phouseString;
-
-    }
-
     public UserInformation(String bar, String drink) {
         this.bar = bar;
         this.drink = drink;
@@ -28,6 +27,9 @@ public class UserInformation {
 
     public String getDrink() {
         return drink;
+    }
+    public String getPhouseCheckIn(){
+        return phouseCheckIn;
     }
 
 }
