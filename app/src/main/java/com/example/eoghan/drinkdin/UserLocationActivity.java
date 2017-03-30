@@ -61,7 +61,8 @@ public class UserLocationActivity extends AppCompatActivity {
                     //UserInformation userInformation = postSnapshot.getValue(UserInformation.class);
 
                     //pass it to string
-                    String favs = "Favourite Drink: " + postSnapshot.child("drink").getValue() +
+                    String favs = "Name: " + postSnapshot.child("name").getValue() +
+                            "\nFavourite Drink: " + postSnapshot.child("drink").getValue() +
                             "\nFavourite Bar: " + postSnapshot.child("bar").getValue();
 
                     if (postSnapshot.child("lascheckin").getValue() != "null") {

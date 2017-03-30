@@ -8,6 +8,7 @@ public class UserInformation {
     public String phouseCheckIn;
     public String bar;
     public String drink;
+    public String name;
 
     public UserInformation() {
         //blank Constructor
@@ -16,9 +17,10 @@ public class UserInformation {
         this.phouseCheckIn = phouseCheckIn;
 
     }
-    public UserInformation(String bar, String drink) {
+    public UserInformation(String bar, String drink, String name) {
         this.bar = bar;
         this.drink = drink;
+        this.name = name;
     }
 
     public String getBar() {
@@ -27,6 +29,9 @@ public class UserInformation {
 
     public String getDrink() {
         return drink;
+    }
+    public String getName() {
+        return name;
     }
 
     public String getPhouseCheckIn(){

@@ -27,6 +27,7 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
     private Button btnSave;
     private EditText editTextDrink;
     private EditText editTextBar;
+    private EditText editTextName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
 
         editTextDrink = (EditText) findViewById(R.id.etDrink);
         editTextBar = (EditText) findViewById(R.id.etBar);
+        editTextName = (EditText) findViewById(R.id.etName1);
         tvWelcome = (TextView) findViewById(R.id.welcomeTV);
         buttonLogout = (Button) findViewById(R.id.lgoutBtn);
         btnSave = (Button) findViewById(R.id.saveBtn);
@@ -64,9 +66,10 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
 
     private void saveUserInfo() {
         String bar = editTextDrink.getText().toString().trim();
+        String name = editTextName.getText().toString().trim();
         String drink = editTextBar.getText().toString().trim();
 
-        UserInformation userInformation = new UserInformation(bar, drink);
+        UserInformation userInformation = new UserInformation(bar, drink, name);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 

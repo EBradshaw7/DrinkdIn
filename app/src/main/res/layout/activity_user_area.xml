@@ -44,23 +44,23 @@
         android:id="@+id/etBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="108dp"
         android:ems="10"
         android:hint="Favourite Bar"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/etDrink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/etBar"
-        android:layout_below="@+id/etBar"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Favourite Drink"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_below="@+id/etBar"
+        android:layout_alignStart="@+id/etBar" />
 
     <Button
         android:id="@+id/backBtn"
@@ -70,4 +70,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:text="Back" />
+
+    <EditText
+        android:id="@+id/etName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etDrink"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName" />
 </RelativeLayout>
