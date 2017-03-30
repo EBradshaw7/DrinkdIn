@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,7 +35,11 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
+    String ratingStr;
+
+    private RatingBar phRating;
     private Button btnAddToList;
+    private Button btnSubmitRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +50,18 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        phRating = (RatingBar) findViewById(R.id.phouseRating);
+        phRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    ratingStr = String.valueOf(rating);
+            }
+        });
+
         btnAddToList = (Button) findViewById(R.id.checkInBtn);
         btnAddToList.setOnClickListener(this);
+        btnSubmitRating = (Button) findViewById(R.id.submitRatinBtn);
+        btnSubmitRating.setOnClickListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -130,6 +145,26 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
         if (v == btnAddToList) {
             AddToList();
         }
+        if (v == btnSubmitRating) {
+            submitRating();
+        }
+    }
+
+    private void submitRating() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+        if (user != null) {
+
+            databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child("Rating").setValue(ratingStr);
+
+            Toast.makeText(this, "Rating Stored", Toast.LENGTH_LONG).show();
+
+        }
+        else {
+            Toast.makeText(this, "Error rating not saved", Toast.LENGTH_LONG).show();
+
+        }
     }
 
     private void AddToList() {
@@ -144,6 +179,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
             Date time = new Date();
 
             databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child(dateFormat.format(time)).setValue(true);
+            //databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child("Rating").setValue(ratingStr);
             databaseReference.child("users").child(user.getUid()).child("lascheckin").setValue("Porterhouse");
 
 

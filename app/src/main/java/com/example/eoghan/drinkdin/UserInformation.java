@@ -9,12 +9,14 @@ public class UserInformation {
     public String bar;
     public String drink;
     public String name;
+    public String ratingStr;
 
     public UserInformation() {
         //blank Constructor
     }
-    public UserInformation(String phouseCheckIn) {
+    public UserInformation(String phouseCheckIn, String ratingStr ) {
         this.phouseCheckIn = phouseCheckIn;
+        this.ratingStr = ratingStr;
 
     }
     public UserInformation(String bar, String drink, String name) {
@@ -36,6 +38,10 @@ public class UserInformation {
 
     public String getPhouseCheckIn(){
         return phouseCheckIn;
+    }
+
+    public String getRatingStr(){
+        return ratingStr;
     }
 
 
