@@ -16,9 +16,11 @@ import com.google.firebase.database.ValueEventListener;
 public class UserLocationActivity extends AppCompatActivity {
 
     private TextView tvInfo;
+    private TextView tvCheckins;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     String checkin;
+    String checkinList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,14 @@ public class UserLocationActivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         tvInfo = (TextView) findViewById(R.id.showFavs);
+        tvCheckins = (TextView) findViewById(R.id.checkInsList);
 
         //call method to show data
         showInfo();
+        showCheckins();
     }
+
+
 
     private void showInfo() {
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -47,46 +53,23 @@ public class UserLocationActivity extends AppCompatActivity {
 
         Query userInfo = databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid());
         userInfo.addListenerForSingleValueEvent(new ValueEventListener() {
-                       @Override
-                       public void onDataChange(DataSnapshot postSnapshot) {
-                           //loop through and print data
-                           if (postSnapshot.exists()){
-                               //get data from snapshot
-                               //UserInformation userInformation = postSnapshot.getValue(UserInformation.class);
-
-                               //pass it to string
-                               String favs = "Favourite Drink: " + postSnapshot.child("drink").getValue() +
-                                       "\nFavourite Bar: " + postSnapshot.child("bar").getValue();
-
-                               if (postSnapshot.child("lascheckin").getValue() != "null"){
-                                   checkin = "checked in " + postSnapshot.child("lascheckin").getValue();
-                               }
-                               tvInfo.setText(favs + "\n " + checkin);
-                           }
-                       }
-
-                       @Override
-                       public void onCancelled(DatabaseError databaseError) {
-
-                       }
-                   });
-
-         /*   @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            @Override
+            public void onDataChange(DataSnapshot postSnapshot) {
                 //loop through and print data
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                if (postSnapshot.exists()) {
                     //get data from snapshot
-                    UserInformation userInformation = postSnapshot.getValue(UserInformation.class);
+                    //UserInformation userInformation = postSnapshot.getValue(UserInformation.class);
 
                     //pass it to string
-                    String favs = "Favourite Drink: " + userInformation.getDrink()+"\nFavourite Bar: "+userInformation.getBar();
-                            *//*"\nChecked in: "+
-                            userInformation.getPhouseCheckIn();*//*
+                    String favs = "Favourite Drink: " + postSnapshot.child("drink").getValue() +
+                            "\nFavourite Bar: " + postSnapshot.child("bar").getValue();
 
-                            if (userInformation.getPhouseCheckIn() != null){
-                                checkin = "checked in" + userInformation.getPhouseCheckIn();
-                            }
+                    if (postSnapshot.child("lascheckin").getValue() != "null") {
+                        checkin = "checked in " + postSnapshot.child("lascheckin").getValue();
+                    }
                     tvInfo.setText(favs + "\n " + checkin);
+
+
                 }
             }
 
@@ -94,7 +77,29 @@ public class UserLocationActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
+    }
+        private void showCheckins() {
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+            Query showCheckinInfo = databaseReference.child("checkin").child(firebaseAuth.getCurrentUser().getUid());
+
+            showCheckinInfo.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        //get data from snapshot
+                        if (dataSnapshot.child("Porterhouse").getValue() != "null") {
+                            checkinList = "Porterhouse" + dataSnapshot.child("Porterhouse").getValue();
+                        }
+                        tvCheckins.setText(checkinList);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
 
     }
-}
+
