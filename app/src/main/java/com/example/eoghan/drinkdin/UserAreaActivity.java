@@ -35,7 +35,7 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser() == null){
+        if (firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
@@ -56,7 +56,7 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
         buttonBack.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
         btnSave.setOnClickListener(this);
-        tvWelcome.setText("Welcome " +user.getEmail());
+        tvWelcome.setText("Welcome " + user.getEmail());
 
 
     }
@@ -70,29 +70,28 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference.child(user.getUid()).setValue(userInformation);
+        databaseReference.child("users").child(user.getUid()).setValue(userInformation);
+
+        //databaseReference.child(user.getUid()).setValue(userInformation);
         Toast.makeText(this, "info saved", Toast.LENGTH_LONG).show();
 
 
     }
+
     @Override
     public void onClick(View v) {
-        if(v == buttonLogout){
+        if (v == buttonLogout) {
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        if (v == btnSave){
+        if (v == btnSave) {
             saveUserInfo();
         }
-        if (v == btnCheckIn){
+        if (v == btnCheckIn) {
             finish();
             startActivity(new Intent(this, UserLocationActivity.class));
-        }
-        if (v == buttonBack){
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
         }
     }
 }

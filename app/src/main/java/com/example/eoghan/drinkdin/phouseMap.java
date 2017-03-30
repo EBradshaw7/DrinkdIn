@@ -22,6 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class phouseMap extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
@@ -136,8 +140,15 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
 
             String phouseCheckIn = "Porterhouse";
 
-            UserInformation UserInformation = new UserInformation(phouseCheckIn);
-            databaseReference.child(user.getUid()).setValue(UserInformation);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date time = new Date();
+
+            databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child(dateFormat.format(time)).setValue(true);
+            databaseReference.child("users").child(user.getUid()).child("lascheckin").setValue("Porterhouse");
+
+
+//            UserInformation UserInformation = new UserInformation(phouseCheckIn);
+//            databaseReference.child(user.getUid()).setValue(UserInformation);
             Toast.makeText(this, "Added to check ins", Toast.LENGTH_LONG).show();
         }else {
             Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();

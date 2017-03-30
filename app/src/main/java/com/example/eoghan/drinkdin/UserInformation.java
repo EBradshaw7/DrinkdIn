@@ -28,9 +28,11 @@ public class UserInformation {
     public String getDrink() {
         return drink;
     }
+
     public String getPhouseCheckIn(){
         return phouseCheckIn;
     }
+
 
 }
 
