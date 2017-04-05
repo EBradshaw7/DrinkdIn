@@ -158,7 +158,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
 
             databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child("Rating").setValue(ratingStr);
 
-            Toast.makeText(this, "Rating Stored", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Rating Stored: " + ratingStr , Toast.LENGTH_LONG).show();
 
         }
         else {
