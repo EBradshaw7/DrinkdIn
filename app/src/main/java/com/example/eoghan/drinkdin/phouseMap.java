@@ -20,8 +20,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,9 +38,20 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    private DatabaseReference retrieveReference;
+
+
+     //int count = 1;
 
     String ratingStr;
+    String ratingCounter;
 
+
+    int currRating;
+    int ratingTotal;
+    String newRatingTotal;
+    int count = 0;
+    int addToRating = 0;
     private RatingBar phRating;
     private Button btnAddToList;
     private Button btnSubmitRating;
@@ -54,7 +69,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
         phRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                    ratingStr = String.valueOf(rating);
+                ratingStr = String.valueOf(rating);
             }
         });
 
@@ -66,7 +81,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        if (firebaseAuth.getCurrentUser() == null){
+        if (firebaseAuth.getCurrentUser() == null) {
             Toast.makeText(this, "Please sign in to access full features", Toast.LENGTH_LONG).show();
 
         }
@@ -153,19 +168,84 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
     private void submitRating() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-
         if (user != null) {
 
             databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child("Rating").setValue(ratingStr);
 
-            Toast.makeText(this, "Rating Stored: " + ratingStr , Toast.LENGTH_LONG).show();
+            Query RetrieveRatingCount = databaseReference.child("ratings").child("porterhouse");
+            RetrieveRatingCount.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot postSnapshot) {
 
-        }
-        else {
-            Toast.makeText(this, "Error rating not saved", Toast.LENGTH_LONG).show();
+                    //get data from snapshot
+                    String  data = postSnapshot.child("numRating").getValue().toString();
 
-        }
+                    if (!data.equals(null)) {
+                        String numRating = (String) postSnapshot.child("numRating").getValue();
+
+                        count = Integer.valueOf(numRating);
+                        count++;
+
+                        ratingCounter = Integer.toString(count);
+
+
+
+                        databaseReference.child("ratings").child("porterhouse").child("numRating").setValue(ratingCounter);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            /*final Query addRatingTotal = databaseReference.child("ratings").child("porterhouse");
+            addRatingTotal.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot postSnapshot) {
+
+                    //get data from snapshot
+                    String  data = postSnapshot.child("numRating").getValue().toString();
+
+                    if (!data.equals(null)) {
+                        String totRating = (String) postSnapshot.child("totalRating").getValue();
+
+                        addToRating = Integer.valueOf(totRating);
+                         float currRating = Float.valueOf(ratingStr);
+                        float ratingTotal = addToRating  + currRating;
+
+                        newRatingTotal = Float.toString(ratingTotal);
+
+
+
+                        databaseReference.child("ratings").child("porterhouse").child("numRating").setValue(newRatingTotal);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });*/
+
+
+
+        Toast.makeText(this, "Rating Stored: " + ratingStr, Toast.LENGTH_LONG).show();
+
+
     }
+        else
+
+    {
+        Toast.makeText(this, "Error rating not saved", Toast.LENGTH_LONG).show();
+
+    }
+
+}
+
 
     private void AddToList() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -173,7 +253,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
 
         if (user != null) {
 
-            String phouseCheckIn = "Porterhouse";
+            //String phouseCheckIn = "Porterhouse";
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date time = new Date();
