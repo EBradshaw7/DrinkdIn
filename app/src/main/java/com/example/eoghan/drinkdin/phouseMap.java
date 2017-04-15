@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -47,14 +48,24 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
     String ratingCounter;
 
 
+    double countFl;
+    double averageRating;
+    double ratingTotalDBL;
+    double ratingCounterDBL;
+
     float currRating;
     int ratingTotal;
+
     String newRatingTotal;
+    String averageRatingStr;
+
     int count = 0;
     float addToRating;
     private RatingBar phRating;
     private Button btnAddToList;
     private Button btnSubmitRating;
+    private TextView ratingTV;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +88,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
         btnAddToList.setOnClickListener(this);
         btnSubmitRating = (Button) findViewById(R.id.submitRatinBtn);
         btnSubmitRating.setOnClickListener(this);
+        ratingTV = (TextView) findViewById(R.id.totalRatingTV);
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -85,6 +97,34 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
             Toast.makeText(this, "Please sign in to access full features", Toast.LENGTH_LONG).show();
 
         }
+
+
+        Query readRatingAvg = databaseReference.child("ratings").child("porterhouse");
+
+        readRatingAvg.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //get data from snapshot
+                    if (dataSnapshot.child("Porterhouse").getValue() != "null") {
+                        String avgRating = "Rating:" + dataSnapshot.child("averageRating").getValue();
+
+
+                    ratingTV.setText(avgRating);
+
+                }
+                else{
+                        ratingTV.setText("Rating: Error");
+
+                    }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 
@@ -149,8 +189,6 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
 
             LatLng myPosition = new LatLng(latitude, longitude);
 
-            //googleMap.addMarker(new MarkerOptions().position(myPosition).title("Current Location"));
-
 
         }
     }
@@ -166,85 +204,112 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
     }
 
     private void submitRating() {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if (user != null) {
+        if (ratingStr != null) {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-            databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child("Rating").setValue(ratingStr);
+            if (user != null) {
 
-            Query RetrieveRatingCount = databaseReference.child("ratings").child("porterhouse");
-            RetrieveRatingCount.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot postSnapshot) {
+                databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child("Rating").setValue(ratingStr);
 
-                    //get data from snapshot
-                    String  data = postSnapshot.child("numRating").getValue().toString();
+                Query RetrieveRatingCount = databaseReference.child("ratings").child("porterhouse");
+                RetrieveRatingCount.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot postSnapshot) {
 
-                    if (!data.equals(null)) {
-                        String numRating = (String) postSnapshot.child("numRating").getValue();
+                        //get data from snapshot
+                        String data = postSnapshot.child("numRating").getValue().toString();
 
-                        count = Integer.valueOf(numRating);
-                        count++;
+                        if (!data.equals(null)) {
+                            String numRating = (String) postSnapshot.child("numRating").getValue();
 
-                        ratingCounter = Integer.toString(count);
+                            count = Integer.valueOf(numRating);
+                            count++;
+
+                            ratingCounter = Integer.toString(count);
 
 
+                            databaseReference.child("ratings").child("porterhouse").child("numRating").setValue(ratingCounter);
 
-                        databaseReference.child("ratings").child("porterhouse").child("numRating").setValue(ratingCounter);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+                });
 
 
-            Query addRatingTotal = databaseReference.child("ratings").child("porterhouse");
-            addRatingTotal.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot postSnapshot2) {
+                Query addRatingTotal = databaseReference.child("ratings").child("porterhouse");
+                addRatingTotal.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot postSnapshot2) {
 
-                    //get data from snapshot
-                    String  data2 = postSnapshot2.child("totalRating").getValue().toString();
+                        //get data from snapshot
+                        String data2 = postSnapshot2.child("totalRating").getValue().toString();
 
-                    if (!data2.equals(null)) {
-                        String totRating = (String) postSnapshot2.child("totalRating").getValue();
+                        if (!data2.equals(null)) {
+                            String totRating = (String) postSnapshot2.child("totalRating").getValue();
 
-                        addToRating = Float.valueOf(totRating);
-                        currRating = Float.valueOf(ratingStr);
-                        float ratingTotal = addToRating  + currRating;
+                            addToRating = Float.valueOf(totRating);
+                            currRating = Float.valueOf(ratingStr);
+                            float ratingTotal = addToRating + currRating;
 
-                        newRatingTotal = Float.toString(ratingTotal);
+                            newRatingTotal = Float.toString(ratingTotal);
+
+                            databaseReference.child("ratings").child("porterhouse").child("totalRating").setValue(newRatingTotal);
 
 
+                        }
+                    }
 
-                        databaseReference.child("ratings").child("porterhouse").child("totalRating").setValue(newRatingTotal);
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
-                }
+                });
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                Query calcAverage = databaseReference.child("ratings").child("porterhouse");
+                calcAverage.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot postSnapshot3) {
 
-                }
-            });
+                        ratingTotalDBL = Double.valueOf(newRatingTotal);
+                        ratingCounterDBL = Double.valueOf(count);
+
+                        double averageRating = ratingTotalDBL / ratingCounterDBL;
+
+                        averageRatingStr = Double.toString(averageRating);
+
+                        databaseReference.child("ratings").child("porterhouse").child("averageRating").setValue(averageRatingStr);
+
+                    }
 
 
-        Toast.makeText(this, "Rating Stored: " + ratingStr, Toast.LENGTH_LONG).show();
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
+                    }
+                });
+
+
+                Toast.makeText(this, "Rating Stored: " + ratingStr, Toast.LENGTH_LONG).show();
+
+
+            } else
+
+            {
+                Toast.makeText(this, "Error rating not saved", Toast.LENGTH_LONG).show();
+
+            }
+
+
+        }else{
+            Toast.makeText(this, "Please Enter value to submit", Toast.LENGTH_LONG).show();
+        }
 
     }
-        else
-
-    {
-        Toast.makeText(this, "Error rating not saved", Toast.LENGTH_LONG).show();
-
-    }
-
-}
 
 
 
