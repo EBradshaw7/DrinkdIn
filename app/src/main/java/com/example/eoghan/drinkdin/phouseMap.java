@@ -279,8 +279,10 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
                         ratingCounterDBL = Double.valueOf(count);
 
                         double averageRating = ratingTotalDBL / ratingCounterDBL;
+                        double avgRatingRounded = Math.round(averageRating * 2) / 2.0;
 
-                        averageRatingStr = Double.toString(averageRating);
+
+                        averageRatingStr = Double.toString(avgRatingRounded);
 
                         databaseReference.child("ratings").child("porterhouse").child("averageRating").setValue(averageRatingStr);
 
@@ -300,7 +302,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
             } else
 
             {
-                Toast.makeText(this, "Error rating not saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "You must log in to register rating", Toast.LENGTH_LONG).show();
 
             }
 
