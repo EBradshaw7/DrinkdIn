@@ -47,11 +47,11 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
     String ratingCounter;
 
 
-    int currRating;
+    float currRating;
     int ratingTotal;
     String newRatingTotal;
     int count = 0;
-    int addToRating = 0;
+    float addToRating;
     private RatingBar phRating;
     private Button btnAddToList;
     private Button btnSubmitRating;
@@ -201,26 +201,27 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
                 }
             });
 
-            /*final Query addRatingTotal = databaseReference.child("ratings").child("porterhouse");
+
+            Query addRatingTotal = databaseReference.child("ratings").child("porterhouse");
             addRatingTotal.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot postSnapshot) {
+                public void onDataChange(DataSnapshot postSnapshot2) {
 
                     //get data from snapshot
-                    String  data = postSnapshot.child("numRating").getValue().toString();
+                    String  data2 = postSnapshot2.child("totalRating").getValue().toString();
 
-                    if (!data.equals(null)) {
-                        String totRating = (String) postSnapshot.child("totalRating").getValue();
+                    if (!data2.equals(null)) {
+                        String totRating = (String) postSnapshot2.child("totalRating").getValue();
 
-                        addToRating = Integer.valueOf(totRating);
-                         float currRating = Float.valueOf(ratingStr);
+                        addToRating = Float.valueOf(totRating);
+                        currRating = Float.valueOf(ratingStr);
                         float ratingTotal = addToRating  + currRating;
 
                         newRatingTotal = Float.toString(ratingTotal);
 
 
 
-                        databaseReference.child("ratings").child("porterhouse").child("numRating").setValue(newRatingTotal);
+                        databaseReference.child("ratings").child("porterhouse").child("totalRating").setValue(newRatingTotal);
 
                     }
                 }
@@ -229,8 +230,7 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
-            });*/
-
+            });
 
 
         Toast.makeText(this, "Rating Stored: " + ratingStr, Toast.LENGTH_LONG).show();
@@ -245,6 +245,8 @@ public class phouseMap extends FragmentActivity implements OnMapReadyCallback, V
     }
 
 }
+
+
 
 
     private void AddToList() {
