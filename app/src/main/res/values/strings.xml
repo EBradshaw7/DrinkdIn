@@ -3,4 +3,6 @@
     <string name="google_android_map_api_key">AIzaSyCy2p2vDyLuEPL7haKZ-i3oNvdIQLJAmZQ </string>
     <string name="title_activity_phouse_map">Map</string>
     <string name="title_activity_wexford_st_crawl">Map</string>
+    <string name="homeBtn">Home</string>
+
 </resources>
