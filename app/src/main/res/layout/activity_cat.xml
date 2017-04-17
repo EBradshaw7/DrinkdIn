@@ -16,29 +16,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Guinness"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="71dp"
-        android:id="@+id/checkBtn" />
-
-    <Button
-        android:text="Whiskey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:id="@+id/button4"
-        android:layout_below="@+id/checkBtn"
-        android:layout_alignStart="@+id/checkBtn" />
-
-    <Button
-        android:text="Craft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/craftBtn"
-        android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/checkBtn" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:id="@+id/listMenuCat"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
