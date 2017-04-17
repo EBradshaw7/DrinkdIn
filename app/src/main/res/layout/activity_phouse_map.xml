@@ -8,7 +8,7 @@
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="242dp"
     tools:context="com.example.eoghan.drinkdin.phouseMap" />
 
 
@@ -29,8 +29,9 @@
             android:layout_height="wrap_content"
             android:text="First things first. We are passionate about beer. And not just our beer. We are passionate about all good beer. That's why in 1989 Liam LaHart and Oliver Hughes opened the first Porterhouse and specialised in importing various beers from around the world with a keen eye on Belgium"
             android:textSize="12sp"
-            android:layout_above="@+id/submitRatinBtn"
-            android:layout_centerHorizontal="true" />
+           android:layout_below="@+id/totalRatingTV"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="11dp" />
 
         <RatingBar
             android:id="@+id/phouseRating"

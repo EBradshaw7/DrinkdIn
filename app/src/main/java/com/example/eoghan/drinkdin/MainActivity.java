@@ -4,13 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  {
 
     private Button catBtn;
     private Button crwlBtn;
     private Button usrBtn;
+
+    String[] menuList = {
+            "Categories",
+            "UserArea",
+            "PlanMyCrawl",
+            "UsefulLinks"
+    };
 
 
     @Override
@@ -18,39 +28,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        catBtn = (Button) findViewById(R.id.catogoriesBtn);
-        crwlBtn = (Button) findViewById(R.id.crawlBtn);
-        usrBtn = (Button) findViewById(R.id.userBtn);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.activity_list, menuList);
 
-        catBtn.setOnClickListener(this);
-        crwlBtn.setOnClickListener(this);
-        usrBtn.setOnClickListener(this);
-    }
+        ListView list = (ListView) findViewById(R.id.listMenu);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                switch(position){
+                    case 0:  Intent catActivity = new Intent(MainActivity.this, CategoriesScreen.class);
+                        startActivity(catActivity);
+                        break;
+                    case 1:  Intent userActivity = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(userActivity);
+                        break;
+                    case 2:  Intent crawlActivity = new Intent(MainActivity.this, CrawlScreen.class);
+                        startActivity(crawlActivity);
+                        break;
 
 
-/*
-    public void onClickCrawl(View v) {
+                }
 
-        //Log.i("clicks", "You Clicked B1");
-        Intent i = new Intent(MainActivity.this, CrawlScreen.class);
-        startActivity(i);
-    }*/
+            }
+            @SuppressWarnings("unused")
+            public void onClick(View v){
+            }
+        });
 
-    @Override
-    public void onClick(View v) {
-    /*    //Log.i("clicks", "You Clicked B1");
-        Intent j = new Intent(MainActivity.this, CategoriesScreen.class);
-        startActivity(j); */
-    if (v == catBtn){
-        startActivity(new Intent(this, CategoriesScreen.class));
-
-    }else if (v == crwlBtn){
-        startActivity(new Intent(this, CrawlScreen.class));
-
-    }else if (v == usrBtn){
-        startActivity(new Intent(this, LoginActivity.class));
-
-    }
 
     }
 }
+
+

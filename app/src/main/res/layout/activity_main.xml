@@ -18,39 +18,11 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/textView" />
 
-    <Button
-        android:text="Plan My Crawl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/crawlBtn"
-        android:onClick="onClickCrawl"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="User Area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:id="@+id/userBtn"
-        android:layout_below="@+id/catogoriesBtn"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/catogoriesBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:text="Catagories" />
-
-    <Button
-        android:text="Useful Links"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:id="@+id/linkBtn"
-        android:layout_below="@+id/crawlBtn"
-        android:layout_alignStart="@+id/userBtn" />
+        android:id="@+id/listMenu"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

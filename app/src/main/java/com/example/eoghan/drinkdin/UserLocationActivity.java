@@ -94,7 +94,7 @@ public class UserLocationActivity extends AppCompatActivity {
                         if (postSnapshot.child("Porterhouse").getValue() != "null") {
                             checkinList = "Pub: Porterhouse Rating: " +
                              dataSnapshot.child("Porterhouse").child("Rating").getValue() + " Date : " +
-                                dataSnapshot.child("Porterhouse").child("2017").getChildren();
+                                dataSnapshot.child("Porterhouse").child("2017").getValue();
 
 
 
