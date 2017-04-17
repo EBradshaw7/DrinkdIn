@@ -96,5 +96,10 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
             finish();
             startActivity(new Intent(this, UserLocationActivity.class));
         }
+        if (v == buttonBack) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
+
     }
 }

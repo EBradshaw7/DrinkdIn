@@ -57,8 +57,6 @@ public class UserLocationActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot postSnapshot) {
                 //loop through and print data
                 if (postSnapshot.exists()) {
-                    //get data from snapshot
-                    //UserInformation userInformation = postSnapshot.getValue(UserInformation.class);
 
                     //pass it to string
                     String favs = "Name: " + postSnapshot.child("name").getValue() +
@@ -66,11 +64,15 @@ public class UserLocationActivity extends AppCompatActivity {
                             "\nFavourite Bar: " + postSnapshot.child("bar").getValue();
 
                     if (postSnapshot.child("lascheckin").getValue() != "null") {
-                        checkin = "checked in " + postSnapshot.child("lascheckin").getValue();
+                        checkin = "Last check in " + postSnapshot.child("lascheckin").getValue();
+
+                        tvInfo.setText(favs + "\n" + checkin);
+                    }else if(checkin == null){
+                        tvInfo.setText(favs + "\nLast check in: No info entered, Yet!");
                     }
-                    tvInfo.setText(favs + "\n " + checkin);
 
-
+                }else{
+                    tvInfo.setText("Error retrieving personal data");
                 }
             }
 
@@ -83,16 +85,24 @@ public class UserLocationActivity extends AppCompatActivity {
         private void showCheckins() {
             databaseReference = FirebaseDatabase.getInstance().getReference();
             Query showCheckinInfo = databaseReference.child("checkin").child(firebaseAuth.getCurrentUser().getUid());
-
             showCheckinInfo.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         //get data from snapshot
-                        if (dataSnapshot.child("Porterhouse").getValue() != "null") {
-                            checkinList = "Porterhouse" + dataSnapshot.child("Porterhouse").getValue();
+
+                        if (postSnapshot.child("Porterhouse").getValue() != "null") {
+                            checkinList = "Pub: Porterhouse Rating: " +
+                             dataSnapshot.child("Porterhouse").child("Rating").getValue() + " Date : " +
+                                dataSnapshot.child("Porterhouse").child("2017").getChildren();
+
+
+
+                            tvCheckins.setText(checkinList);
+                        }else{
+                            tvCheckins.setText("No check-ins, yet!");
                         }
-                        tvCheckins.setText(checkinList);
+
                     }
                 }
                 @Override
