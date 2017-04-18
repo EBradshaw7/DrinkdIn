@@ -44,7 +44,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".NewUserActivity" />
         <activity android:name=".UserAreaActivity" />
-        <activity android:name=".UserLocationActivity"></activity>
+        <activity android:name=".UserLocationActivity" />
+        <activity android:name=".ContactUsActivity"></activity>
     </application>
 
 </manifest>

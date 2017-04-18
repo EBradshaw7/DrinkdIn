@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity  {
             "Categories",
             "User Area",
             "Plan My Crawl",
-            "Useful Links"
+            "Contact us"
     };
 
 
@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity  {
                         break;
                     case 2:  Intent crawlActivity = new Intent(MainActivity.this, CrawlScreen.class);
                         startActivity(crawlActivity);
+                        break;
+                    case 3:  Intent contactActivity = new Intent(MainActivity.this, ContactUsActivity.class);
+                        startActivity(contactActivity);
                         break;
 
 
