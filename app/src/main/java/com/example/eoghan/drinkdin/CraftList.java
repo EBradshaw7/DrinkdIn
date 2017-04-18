@@ -4,28 +4,90 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by Eoghan on 07/12/2016.
  */
 
-public class CraftList extends AppCompatActivity implements View.OnClickListener {
+public class CraftList extends AppCompatActivity {
+
+
+    String phouseRating;
+
+    private DatabaseReference databaseReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_craft);
 
-        Button porterBtn = (Button) findViewById(R.id.phBtn);
-        porterBtn.setOnClickListener(this);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        Query getRatings = databaseReference.child("ratings").child("porterhouse");
+        getRatings.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot postSnapshot) {
+                if (postSnapshot.child("averageRating").getValue() != "null") {
+
+                    //pass it to string
+                    phouseRating = postSnapshot.child("averageRating").getValue().toString();
+
+                    setValues();
+
+                } else {
+                    phouseRating = "Sorry no rating available";
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 
+    public void setValues() {
 
-    public void onClick (View v){
-        //Log.i("clicks", "You Clicked B1");
-        Intent i = new Intent(CraftList.this, phouseMap.class);
-        startActivity(i);
+        String[] craftList = {
+                "Porterhouse " + phouseRating + "\u2605",
+                "Sweetmans"
+
+        };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.activity_list, craftList);
+
+        ListView list = (ListView) findViewById(R.id.listCraft);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                switch (position) {
+                    case 0:
+                        Intent catActivity = new Intent(CraftList.this, phouseMap.class);
+                        startActivity(catActivity);
+                        break;
+
+                }
+
+            }
+        });
     }
 }

@@ -37,17 +37,14 @@ public class CategoriesScreen extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 switch(position){
-                    case 0:  Intent phouseActivity = new Intent(CategoriesScreen.this, phouseMap.class);
-                        startActivity(phouseActivity);
+                    case 0:  Intent craftActivity = new Intent(CategoriesScreen.this, CraftList.class);
+                        startActivity(craftActivity);
                         break;
 
 
 
                 }
 
-            }
-            @SuppressWarnings("unused")
-            public void onClick(View v){
             }
         });
 

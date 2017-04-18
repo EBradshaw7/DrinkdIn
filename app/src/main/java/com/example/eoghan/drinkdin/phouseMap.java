@@ -370,7 +370,7 @@ public class phouseMap extends AppCompatActivity implements OnMapReadyCallback, 
         if (user != null) {
 
             //code for adding timestamp
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date time = new Date();
 
             //set to true if the user hits check in as they have now visited this pub

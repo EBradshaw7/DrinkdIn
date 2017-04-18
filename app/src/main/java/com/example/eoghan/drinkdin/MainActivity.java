@@ -6,14 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private Button catBtn;
-    private Button crwlBtn;
-    private Button usrBtn;
 
     String[] menuList = {
             "Categories",
@@ -53,9 +49,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
 
             }
-            @SuppressWarnings("unused")
-            public void onClick(View v){
-            }
+
         });
 
 

@@ -7,19 +7,11 @@
     tools:context="com.example.eoghan.drinkdin.CategoriesScreen">
 
 
-
-    <TextView
-        android:text="Please choose from our list of categories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:id="@+id/listMenuCat"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
