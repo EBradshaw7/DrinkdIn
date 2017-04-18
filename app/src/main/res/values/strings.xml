@@ -4,5 +4,6 @@
     <string name="title_activity_phouse_map">Map</string>
     <string name="title_activity_wexford_st_crawl">Map</string>
     <string name="homeBtn">Home</string>
+    <string name="userBtn" />
 
 </resources>

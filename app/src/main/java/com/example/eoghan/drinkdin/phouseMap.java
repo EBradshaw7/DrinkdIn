@@ -94,7 +94,6 @@ public class phouseMap extends AppCompatActivity implements OnMapReadyCallback, 
 
         ratingTV = (TextView) findViewById(R.id.totalRatingTV);
 
-
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -116,7 +115,7 @@ public class phouseMap extends AppCompatActivity implements OnMapReadyCallback, 
                     String avgRating = dataSnapshot.child("averageRating").getValue().toString();
 
                     //display rating in edit text
-                    ratingTV.setText("Rating:" + avgRating);
+                    ratingTV.setText("Rating:" + avgRating + "\u2605");
 
                 } else {
                     //if there is a problem retrieving rating
@@ -140,6 +139,9 @@ public class phouseMap extends AppCompatActivity implements OnMapReadyCallback, 
         inflate.inflate(R.menu.home, menu);
         return super.onCreateOptionsMenu(menu);
 
+
+
+
     }
 
     @Override
@@ -149,9 +151,9 @@ public class phouseMap extends AppCompatActivity implements OnMapReadyCallback, 
                 Intent i = new Intent(phouseMap.this, MainActivity.class);
                 startActivity(i);
                 //return true;
-            /*case R.id.menu_action2:
-                // do whatever
-                return true;*/
+            case R.id.userIcon:
+                Intent j = new Intent(phouseMap.this, UserAreaActivity.class);
+                startActivity(j);
             default:
                 return super.onOptionsItemSelected(item);
         }

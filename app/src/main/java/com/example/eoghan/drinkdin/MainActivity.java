@@ -13,9 +13,9 @@ public class MainActivity extends AppCompatActivity  {
 
     String[] menuList = {
             "Categories",
-            "UserArea",
-            "PlanMyCrawl",
-            "UsefulLinks"
+            "User Area",
+            "Plan My Crawl",
+            "Useful Links"
     };
 
 
