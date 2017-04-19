@@ -1,0 +1,10 @@
+<animation-list android:id="@+id/pint_animation"
+    android:oneshot="false"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item android:drawable="@drawable/pdialog1" android:duration="50" />
+        <item android:drawable="@drawable/pdialog2" android:duration="50" />
+        <item android:drawable="@drawable/pdialog3" android:duration="50" />
+        <item android:drawable="@drawable/pdialog4" android:duration="50" />
+        <item android:drawable="@drawable/pdialog5" android:duration="50" />
+    </animation-list>

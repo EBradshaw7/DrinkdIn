@@ -1,11 +1,13 @@
 package com.example.eoghan.drinkdin;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,45 +23,56 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CraftList extends AppCompatActivity {
 
+    ImageView pbar;
 
+    AnimationDrawable frameAnimation;
+
+    //private ProgressDialog pbar;
     String phouseRating;
 
+    //private ImageView pbar;
     private DatabaseReference databaseReference;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_craft);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        pbar = (ImageView) findViewById(R.id.pintAniImg);
 
-        Query getRatings = databaseReference.child("ratings").child("porterhouse");
-        getRatings.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot postSnapshot) {
-                if (postSnapshot.child("averageRating").getValue() != "null") {
+            frameAnimation = (AnimationDrawable) pbar.getDrawable();
 
-                    //pass it to string
-                    phouseRating = postSnapshot.child("averageRating").getValue().toString();
+            frameAnimation.start();
 
-                    setValues();
 
-                } else {
-                    phouseRating = "Sorry no rating available";
+
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+
+            Query getRatings = databaseReference.child("ratings").child("porterhouse");
+            getRatings.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot postSnapshot) {
+                    if (postSnapshot.child("averageRating").getValue() != "null") {
+
+                        //pass it to string
+                        phouseRating = postSnapshot.child("averageRating").getValue().toString();
+
+                        setValues();
+
+                    } else {
+                        phouseRating = "Sorry no rating available";
+                    }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+                }
+            });
 
 
-    }
+        }
 
 
     public void setValues() {
@@ -87,7 +100,15 @@ public class CraftList extends AppCompatActivity {
 
                 }
 
+
             }
+
         });
+        frameAnimation.stop();
+        pbar.setImageResource(android.R.color.transparent);
+
+
+
     }
+
 }
