@@ -3,6 +3,8 @@ package com.example.eoghan.drinkdin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,11 +18,18 @@ import com.google.firebase.database.ValueEventListener;
 public class UserLocationActivity extends AppCompatActivity {
 
     private TextView tvInfo;
-    private TextView tvCheckins;
+    //private TextView tvCheckins;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+
+    String nameStr;
+    String faveBarStr;
+    String faveDrinkStr;
+
+
     String checkin;
     String checkinList;
+    String phouseCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +44,8 @@ public class UserLocationActivity extends AppCompatActivity {
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        tvInfo = (TextView) findViewById(R.id.showFavs);
-        tvCheckins = (TextView) findViewById(R.id.checkInsList);
+        //tvInfo = (TextView) findViewById(R.id.showFavs);
+        //tvCheckins = (TextView) findViewById(R.id.checkInsList);
 
         //call method to show data
         showInfo();
@@ -59,21 +68,27 @@ public class UserLocationActivity extends AppCompatActivity {
                 if (postSnapshot.exists()) {
 
                     //pass it to string
-                    String favs = "Name: " + postSnapshot.child("name").getValue() +
-                            "\nFavourite Drink: " + postSnapshot.child("drink").getValue() +
-                            "\nFavourite Bar: " + postSnapshot.child("bar").getValue();
+                    nameStr = "Name: " + postSnapshot.child("name").getValue();
+
+                    faveDrinkStr = "Favourite Drink: " + postSnapshot.child("drink").getValue();
+
+                    faveBarStr = "Favourite Bar: " + postSnapshot.child("bar").getValue();
 
                     if (postSnapshot.child("lascheckin").getValue() != "null") {
-                        checkin = "Last check in " + postSnapshot.child("lascheckin").getValue();
+                        checkin = "Last check in: " + postSnapshot.child("lascheckin").getValue();
 
-                        tvInfo.setText(favs + "\n" + checkin);
-                    }else if(checkin == null){
-                        tvInfo.setText(favs + "\nLast check in: No info entered, Yet!");
+                        //tvInfo.setText(favs + "\n" + checkin);
+                        displayUserInfo();
+                    } else if (postSnapshot.child("lascheckin").getValue() == "null") {
+                        // tvInfo.setText(favs + "\nLast check in: No info entered, Yet!"
+                        checkin = "Last check in: No Checkins Yet!";
+                    } else {
+                        checkin = "Error no data found";
+
                     }
-
-                }else{
-                    tvInfo.setText("Error retrieving personal data");
                 }
+
+
             }
 
             @Override
@@ -82,7 +97,25 @@ public class UserLocationActivity extends AppCompatActivity {
             }
         });
     }
-        private void showCheckins() {
+
+    private void displayUserInfo() {
+
+        String[] userInfoList = {
+                nameStr,
+                faveBarStr,
+                faveDrinkStr,
+                checkin
+
+
+        };
+        ArrayAdapter<String> adapterUser = new ArrayAdapter<String>(this,
+                R.layout.activity_list, userInfoList);
+
+        ListView userInfoLV = (ListView) findViewById(R.id.listUserInfo);
+        userInfoLV.setAdapter(adapterUser);
+    }
+
+    private void showCheckins() {
             databaseReference = FirebaseDatabase.getInstance().getReference();
             Query showCheckinInfo = databaseReference.child("checkin").child(firebaseAuth.getCurrentUser().getUid());
             showCheckinInfo.addValueEventListener(new ValueEventListener() {
@@ -92,15 +125,16 @@ public class UserLocationActivity extends AppCompatActivity {
                         //get data from snapshot
 
                         if (postSnapshot.child("Porterhouse").getValue() != "null") {
-                            checkinList = "Pub: Porterhouse Rating: " +
-                             dataSnapshot.child("Porterhouse").child("Rating").getValue() + " Date : " +
+                            phouseCheck = "Porterhouse, Rating: " +
+                             dataSnapshot.child("Porterhouse").child("Rating").getValue() + ", Date : " +
                                 dataSnapshot.child("Porterhouse").child("timeStamp").getValue();
 
 
 
-                            tvCheckins.setText(checkinList);
+                            displayValues();
+                            //tvCheckins.setText(checkinList);
                         }else{
-                            tvCheckins.setText("No check-ins, yet!");
+                            //tvCheckins.setText("No check-ins, yet!");
                         }
 
                     }
@@ -110,7 +144,24 @@ public class UserLocationActivity extends AppCompatActivity {
 
                 }
             });
+
+
+
+
+
         }
 
+    private void displayValues() {
+        String[] checkInList = {
+            phouseCheck
+
+    };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.activity_list, checkInList);
+
+        ListView checkInLV = (ListView) findViewById(R.id.listCheckin);
+        checkInLV.setAdapter(adapter);
     }
+
+}
 
