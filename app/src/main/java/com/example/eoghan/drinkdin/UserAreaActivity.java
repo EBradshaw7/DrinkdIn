@@ -50,6 +50,7 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
         editTextBar = (EditText) findViewById(R.id.etBar);
         editTextName = (EditText) findViewById(R.id.etName1);
         tvWelcome = (TextView) findViewById(R.id.welcomeTV);
+
         buttonLogout = (Button) findViewById(R.id.lgoutBtn);
         btnSave = (Button) findViewById(R.id.saveBtn);
         btnCheckIn = (Button) findViewById(R.id.checkBtn);
@@ -58,7 +59,8 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
         buttonBack.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
         btnSave.setOnClickListener(this);
-        tvWelcome.setText("Welcome " + user.getEmail());
+
+        tvWelcome.setText("Welcome " + user.getDisplayName());
 
 
     }
@@ -74,7 +76,7 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         databaseReference.child("users").child(user.getUid()).setValue(userInformation);
-
+        
         //databaseReference.child(user.getUid()).setValue(userInformation);
         Toast.makeText(this, "info saved", Toast.LENGTH_LONG).show();
 

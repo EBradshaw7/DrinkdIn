@@ -32,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -372,11 +371,15 @@ public class phouseMap extends AppCompatActivity implements OnMapReadyCallback, 
         if (user != null) {
 
             //code for adding timestamp
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            Date time = new Date();
+            //set format
+            String datePattern = "yyyy/MM/dd";
+            SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
+
+            //record date
+            String date = dateFormat.format(new Date());
 
             //set to true if the user hits check in as they have now visited this pub
-            databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child(dateFormat.format(time)).setValue(true);
+            databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child("timeStamp").setValue(date);
 
             //set this pub as last check in, over writing previous
             databaseReference.child("users").child(user.getUid()).child("lascheckin").setValue("Porterhouse");
