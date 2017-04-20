@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.eoghan.drinkdin.MainActivity"
-    android:background="@drawable/back" >
+    android:background="@drawable/back31" >
 
     <TextView
         android:text="Please Drink Responsibly"

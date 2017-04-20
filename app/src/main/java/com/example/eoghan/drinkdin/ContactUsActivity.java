@@ -26,7 +26,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void sendMail() {
-        String[] TO = {"eoghan.bradshaw@gmail.com"};
+        String[] TO = {"drinkdin.customerservice@gmail.com"};
         Intent emailMSG = new Intent(Intent.ACTION_SEND);
 
         emailMSG.setData(Uri.parse("mailto:"));

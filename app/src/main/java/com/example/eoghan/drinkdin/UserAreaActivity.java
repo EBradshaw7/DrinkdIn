@@ -60,7 +60,7 @@ public class UserAreaActivity extends AppCompatActivity implements View.OnClickL
         buttonLogout.setOnClickListener(this);
         btnSave.setOnClickListener(this);
 
-        tvWelcome.setText("Welcome " + user.getDisplayName());
+        tvWelcome.setText("Welcome " + user.getEmail());
 
 
     }

@@ -22,6 +22,8 @@ public class UserLocationActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
+
+
     String nameStr;
     String faveBarStr;
     String faveDrinkStr;
@@ -46,6 +48,9 @@ public class UserLocationActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         //tvInfo = (TextView) findViewById(R.id.showFavs);
         //tvCheckins = (TextView) findViewById(R.id.checkInsList);
+
+
+
 
         //call method to show data
         showInfo();
@@ -79,9 +84,11 @@ public class UserLocationActivity extends AppCompatActivity {
 
                         //tvInfo.setText(favs + "\n" + checkin);
                         displayUserInfo();
-                    } else if (postSnapshot.child("lascheckin").getValue() == "null") {
+                    }
+                    if (postSnapshot.child("lascheckin").getValue() == "null") {
                         // tvInfo.setText(favs + "\nLast check in: No info entered, Yet!"
                         checkin = "Last check in: No Checkins Yet!";
+                        displayUserInfo();
                     } else {
                         checkin = "Error no data found";
 
