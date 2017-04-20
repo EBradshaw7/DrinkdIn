@@ -19,52 +19,54 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <Button
-        android:id="@+id/checkInBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Check in" />
+        <Button
+            android:id="@+id/checkInBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Check in" />
 
-    <TextView
-       android:id="@+id/textView5"
-       android:layout_width="300dp"
-       android:layout_height="wrap_content"
-       android:text="First things first. We are passionate about beer. And not just our beer. We are passionate about all good beer. That's why in 1989 Liam LaHart and Oliver Hughes opened the first Porterhouse and specialised in importing various beers from around the world with a keen eye on Belgium"
-       android:textSize="12sp"
-       android:layout_below="@+id/totalRatingTV"
-       android:layout_centerHorizontal="true"
-       android:layout_marginTop="11dp"
-       android:textColor="#000000"
-        />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="First things first. We are passionate about beer. And not just our beer. We are passionate about all good beer. That's why in 1989 Liam LaHart and Oliver Hughes opened the first Porterhouse and specialised in importing various beers from around the world with a keen eye on Belgium"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:layout_above="@+id/submitRatinBtn"
+            android:layout_centerHorizontal="true"
+            />
 
-    <RatingBar
-        android:id="@+id/phouseRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkInBtn"
-        android:layout_centerHorizontal="true"
-        android:minHeight="60dp"
-        android:maxHeight="60dp"
-        android:minWidth="200dp"
-        android:numStars="5" />
+        <RatingBar
+            android:id="@+id/phouseRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkInBtn"
+            android:layout_centerHorizontal="true"
+            android:maxHeight="60dp"
+            android:minHeight="60dp"
+            android:minWidth="200dp"
+            android:numStars="5" />
         <!--style="@style/CustomRatingBar"
         android:progressDrawable="@drawable/custom_ratingbar_full"-->
 
 
-    <Button
-        android:id="@+id/submitRatinBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Submit Rating" />
+        <Button
+            android:id="@+id/submitRatinBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Submit Rating" />
 
-    <TextView
-        android:id="@+id/totalRatingTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        <TextView
+            android:id="@+id/totalRatingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/phouseRating"
+            android:layout_centerInParent="true"
+            />
 
     </RelativeLayout>
 </LinearLayout>
