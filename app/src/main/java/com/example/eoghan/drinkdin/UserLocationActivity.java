@@ -33,8 +33,10 @@ public class UserLocationActivity extends AppCompatActivity {
     String checkin;
 
     String checkinList;
+
     String phouseCheck;
     String sweetmansCheck;
+    String beermarketCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,7 @@ public class UserLocationActivity extends AppCompatActivity {
                         faveBarStr = "Favourite Bar: No favourite bar stored";
                         displayUserInfo();
                     }
+
 
                     if (postSnapshot.child("lascheckin") != null) {
                         checkin = "Last check in: " + postSnapshot.child("lascheckin").getValue();
@@ -175,6 +178,16 @@ public class UserLocationActivity extends AppCompatActivity {
                                sweetmansCheck = "notChecked";
                            }
 
+
+                           if (postSnapshot.child("BeerMarket").getValue() == null) {
+                                beermarketCheck = "BeerMarket, Rating: " +
+                                       dataSnapshot.child("Beermarket").child("Rating").getValue() + ", Date : " +
+                                       dataSnapshot.child("Beermarket").child("timeStamp").getValue();
+
+                           }else{
+                                beermarketCheck = "notChecked";
+                           }
+
                            displayValues();
                            //tvCheckins.setText(checkinList);
 
@@ -200,6 +213,7 @@ public class UserLocationActivity extends AppCompatActivity {
         List<String> checkIn = new ArrayList<String>();
         checkIn.add(phouseCheck);
         checkIn.add(sweetmansCheck);
+        checkIn.add(beermarketCheck);
 
         for(String curVal : checkIn){
             if(curVal.contains("notChecked") || curVal.contains("null")){

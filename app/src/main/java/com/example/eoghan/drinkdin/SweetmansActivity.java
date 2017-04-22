@@ -374,7 +374,7 @@ private TextView ratingTV;
 
                     //code for adding timestamp
                     //set format
-                    String datePattern = "yyyy/MM/dd";
+                    String datePattern = "dd/MM/yyyy";
                     SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
 
                     //record date

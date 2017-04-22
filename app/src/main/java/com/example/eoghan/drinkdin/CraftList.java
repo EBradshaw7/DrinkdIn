@@ -30,6 +30,7 @@ public class CraftList extends AppCompatActivity {
     //private ProgressDialog pbar;
     String phouseRating;
     String sweetmansRating;
+    String beerMarketRating;
 
     //private ImageView pbar;
     private DatabaseReference databaseReference;
@@ -58,12 +59,14 @@ public class CraftList extends AppCompatActivity {
                         //pass it to string
                         phouseRating = postSnapshot.child("porterhouse").child("averageRating").getValue().toString();
                         sweetmansRating = postSnapshot.child("sweetmans").child("averageRating").getValue().toString();
+                        beerMarketRating = postSnapshot.child("beermarket").child("averageRating").getValue().toString();
 
                         setValues();
 
                     } else {
                         phouseRating = "Sorry no rating available";
                         sweetmansRating = "Sorry no rating available";
+                        beerMarketRating = "Sorry no rating available";
                     }
 
                 }
@@ -82,7 +85,8 @@ public class CraftList extends AppCompatActivity {
 
         String[] craftList = {
                 "Porterhouse " + phouseRating + "\u2605",
-                "Sweetmans" + sweetmansRating + "\u2605"
+                "Sweetmans " + sweetmansRating + "\u2605",
+                "BeerMarket " + beerMarketRating + "\u2605"
 
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -101,8 +105,12 @@ public class CraftList extends AppCompatActivity {
                         startActivity(phouseIntent);
                         break;
                     case 1:
-                            Intent sweetmansIntent = new Intent(CraftList.this, SweetmansActivity.class);
+                        Intent sweetmansIntent = new Intent(CraftList.this, SweetmansActivity.class);
                         startActivity(sweetmansIntent);
+                        break;
+                    case 2:
+                        Intent beermarketIntent = new Intent(CraftList.this, BeerMarketActivity.class);
+                        startActivity(beermarketIntent);
                         break;
 
                 }

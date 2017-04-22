@@ -5,9 +5,9 @@ import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,7 +35,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PorterhouseActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
+public class BeerMarketActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
+
 
     //google maps variables
     private GoogleMap mMap;
@@ -57,7 +58,7 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
     String averageRatingStr;
 
     //layout elements
-    private RatingBar phRating;
+    private RatingBar bmRating;
     private Button btnAddToList;
     private Button btnSubmitRating;
     private TextView ratingTV;
@@ -66,16 +67,18 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
     //for when class is loaded
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phouse_map);
+        setContentView(R.layout.activity_beer_market);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         //rating bar
-        phRating = (RatingBar) findViewById(R.id.phouseRating);
-        phRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        bmRating = (RatingBar) findViewById(R.id.beerMarketRating);
+        bmRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 //pass float value to string for storage
@@ -103,12 +106,12 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
         }
 
         //retrieve the average rating to display
-        Query readRatingAvg = databaseReference.child("ratings").child("porterhouse");
+        Query readRatingAvg = databaseReference.child("ratings").child("beermarket");
         readRatingAvg.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //get data from snapshot ensure it is not null
-                if (dataSnapshot.child("Porterhouse").getValue() != "null") {
+                if (dataSnapshot.child("beermarket").child("averageRating").getValue() == null) {
 
                     //get value and pass it to string
                     String avgRating = dataSnapshot.child("averageRating").getValue().toString();
@@ -147,11 +150,11 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.homeIcon:
-                Intent i = new Intent(PorterhouseActivity.this, MainActivity.class);
+                Intent i = new Intent(BeerMarketActivity.this, MainActivity.class);
                 startActivity(i);
                 //return true;
             case R.id.userIcon:
-                Intent j = new Intent(PorterhouseActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(BeerMarketActivity.this, UserAreaActivity.class);
                 startActivity(j);
             default:
                 return super.onOptionsItemSelected(item);
@@ -163,16 +166,16 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        //latitude and longitude for this pub
-        lat = 53.343908;
-        lon = -6.267554;
+        //latitude and longitude for this pub 53.3439254,-6.2715848
+        lat = 53.3439254;
+        lon = -6.2715848;
 
         //set camera settings, title and marker at lat and lon
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lon)));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lon))
-                .title("Porterhouse"));
+                .title("BeerMarket"));
 
 
         // Enabling MyLocation Layer of Google Map
@@ -238,10 +241,10 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
 
                 //add the rating to the rating table
                 databaseReference.child("checkin").child(
-                        user.getUid()).child("Porterhouse").child("Rating").setValue(ratingStr);
+                        user.getUid()).child("Beermarket").child("Rating").setValue(ratingStr);
 
                 //add to the number of ratings stored once the rating is submitted
-                Query RetrieveRatingCount = databaseReference.child("ratings").child("porterhouse");
+                Query RetrieveRatingCount = databaseReference.child("ratings").child("beermarket");
                 RetrieveRatingCount.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot postSnapshot) {
@@ -263,7 +266,7 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
                             ratingCounter = Integer.toString(count);
 
                             //post string to ratings counter table
-                            databaseReference.child("ratings").child("porterhouse").child("numRating").setValue(ratingCounter);
+                            databaseReference.child("ratings").child("beermarket").child("numRating").setValue(ratingCounter);
 
                         }
                     }
@@ -275,14 +278,14 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
                 });
 
                 //this query is to add the total value of all ratings
-                Query addRatingTotal = databaseReference.child("ratings").child("porterhouse");
+                Query addRatingTotal = databaseReference.child("ratings").child("beermarket");
                 addRatingTotal.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot postSnapshot2) {
                         //get data from snapshot
-                        String data2 = postSnapshot2.child("totalRating").getValue().toString();
+                       // String data2 = postSnapshot2.child("totalRating").getValue().toString();
 
-                        if (!data2.equals(null)) {
+                        //if (!data2.equals(null)) {
                             //get string of previous value from database
                             String totRating = (String) postSnapshot2.child("totalRating").getValue();
 
@@ -299,10 +302,10 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
                             newRatingTotal = Float.toString(ratingTotal);
 
                             //post new value to database
-                            databaseReference.child("ratings").child("porterhouse").child("totalRating").setValue(newRatingTotal);
+                            databaseReference.child("ratings").child("beermarket").child("totalRating").setValue(newRatingTotal);
 
                         }
-                    }
+
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
@@ -311,7 +314,7 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
                 });
 
                 //this is to calculate the average rating of all user ratings
-                Query calcAverage = databaseReference.child("ratings").child("porterhouse");
+                Query calcAverage = databaseReference.child("ratings").child("beermarket");
                 calcAverage.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot postSnapshot3) {
@@ -330,7 +333,7 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
                         averageRatingStr = Double.toString(avgRatingRounded);
 
                         //post it to database
-                        databaseReference.child("ratings").child("porterhouse").child("averageRating").setValue(averageRatingStr);
+                        databaseReference.child("ratings").child("beermarket").child("averageRating").setValue(averageRatingStr);
 
                     }
 
@@ -379,10 +382,10 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
             String date = dateFormat.format(new Date());
 
             //set to true if the user hits check in as they have now visited this pub
-            databaseReference.child("checkin").child(user.getUid()).child("Porterhouse").child("timeStamp").setValue(date);
+            databaseReference.child("checkin").child(user.getUid()).child("Beermarket").child("timeStamp").setValue(date);
 
             //set this pub as last check in, over writing previous
-            databaseReference.child("users").child(user.getUid()).child("lascheckin").setValue("Porterhouse");
+            databaseReference.child("users").child(user.getUid()).child("lascheckin").setValue("Beermarket");
 
             //confirm to user that this was succsessful
             Toast.makeText(this, "Added to check ins", Toast.LENGTH_LONG).show();
@@ -394,3 +397,4 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
         }
     }
 }
+

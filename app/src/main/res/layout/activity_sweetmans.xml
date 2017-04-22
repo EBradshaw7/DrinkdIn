@@ -66,10 +66,16 @@
                 android:id="@+id/totalRatingTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/phouseRating"
+                android:layout_alignBottom="@+id/sweetmansRating"
                 android:layout_centerInParent="true"
                 />
-
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkInBtn"
+                android:layout_centerHorizontal="true"
+                android:text="Sweetmans" />
         </RelativeLayout>
     </LinearLayout>
 
