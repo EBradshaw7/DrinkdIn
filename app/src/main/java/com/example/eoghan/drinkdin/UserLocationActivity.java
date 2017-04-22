@@ -74,12 +74,12 @@ public class UserLocationActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot postSnapshot) {
                 //loop through and print data
                 if (postSnapshot.exists()) {
-                    if (postSnapshot.child("name") == null) {
-                        nameStr = "Name: No name stored";
-                        displayUserInfo();
-                    }
                     if (postSnapshot.child("name") != null) {
                         nameStr = "Name: " + postSnapshot.child("name").getValue();
+                        displayUserInfo();
+                    }
+                    if (postSnapshot.child("name").getValue().equals("")) {
+                        nameStr = "Name: No name stored";
                         displayUserInfo();
                     }
 
@@ -87,7 +87,7 @@ public class UserLocationActivity extends AppCompatActivity {
                         faveDrinkStr = "Favourite Drink: " + postSnapshot.child("drink").getValue();
                         displayUserInfo();
                     }
-                    if (postSnapshot.child("drink") == null) {
+                    if (postSnapshot.child("drink").getValue().equals("")) {
                         faveDrinkStr = "Favourite Drink: No favourite drink stored";
                         displayUserInfo();
                     }
@@ -97,7 +97,7 @@ public class UserLocationActivity extends AppCompatActivity {
                         faveBarStr = "Favourite Bar: " + postSnapshot.child("bar").getValue();
                         displayUserInfo();
                     }
-                    if (postSnapshot.child("bar") == null) {
+                    if (postSnapshot.child("bar").getValue().equals("")) {
                         faveBarStr = "Favourite Bar: No favourite bar stored";
                         displayUserInfo();
                     }
@@ -107,7 +107,6 @@ public class UserLocationActivity extends AppCompatActivity {
                         displayUserInfo();
                     }
                     if (postSnapshot.child("lascheckin").getValue() == null) {
-                        // tvInfo.setText(favs + "\nLast check in: No info entered, Yet!"
                         checkin = "Last check in: No Checkins Yet!";
                         displayUserInfo();
                     } else {
