@@ -35,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class phouseMap extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
+public class PorterhouseActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
     //google maps variables
     private GoogleMap mMap;
@@ -147,11 +147,11 @@ public class phouseMap extends AppCompatActivity implements OnMapReadyCallback, 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.homeIcon:
-                Intent i = new Intent(phouseMap.this, MainActivity.class);
+                Intent i = new Intent(PorterhouseActivity.this, MainActivity.class);
                 startActivity(i);
                 //return true;
             case R.id.userIcon:
-                Intent j = new Intent(phouseMap.this, UserAreaActivity.class);
+                Intent j = new Intent(PorterhouseActivity.this, UserAreaActivity.class);
                 startActivity(j);
             default:
                 return super.onOptionsItemSelected(item);

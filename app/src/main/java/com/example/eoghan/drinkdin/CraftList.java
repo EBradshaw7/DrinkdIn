@@ -29,6 +29,7 @@ public class CraftList extends AppCompatActivity {
 
     //private ProgressDialog pbar;
     String phouseRating;
+    String sweetmansRating;
 
     //private ImageView pbar;
     private DatabaseReference databaseReference;
@@ -48,19 +49,21 @@ public class CraftList extends AppCompatActivity {
 
             databaseReference = FirebaseDatabase.getInstance().getReference();
 
-            Query getRatings = databaseReference.child("ratings").child("porterhouse");
+            Query getRatings = databaseReference.child("ratings");
             getRatings.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot postSnapshot) {
                     if (postSnapshot.child("averageRating").getValue() != "null") {
 
                         //pass it to string
-                        phouseRating = postSnapshot.child("averageRating").getValue().toString();
+                        phouseRating = postSnapshot.child("porterhouse").child("averageRating").getValue().toString();
+                        sweetmansRating = postSnapshot.child("sweetmans").child("averageRating").getValue().toString();
 
                         setValues();
 
                     } else {
                         phouseRating = "Sorry no rating available";
+                        sweetmansRating = "Sorry no rating available";
                     }
 
                 }
@@ -79,7 +82,7 @@ public class CraftList extends AppCompatActivity {
 
         String[] craftList = {
                 "Porterhouse " + phouseRating + "\u2605",
-                "Sweetmans"
+                "Sweetmans" + sweetmansRating + "\u2605"
 
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -94,8 +97,12 @@ public class CraftList extends AppCompatActivity {
                                     int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent catActivity = new Intent(CraftList.this, phouseMap.class);
-                        startActivity(catActivity);
+                        Intent phouseIntent = new Intent(CraftList.this, PorterhouseActivity.class);
+                        startActivity(phouseIntent);
+                        break;
+                    case 1:
+                            Intent sweetmansIntent = new Intent(CraftList.this, SweetmansActivity.class);
+                        startActivity(sweetmansIntent);
                         break;
 
                 }

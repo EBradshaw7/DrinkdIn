@@ -36,7 +36,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".phouseMap"
+            android:name=".PorterhouseActivity"
             android:label="@string/title_activity_phouse_map" />
         <activity
             android:name=".WexfordStCrawl"
@@ -45,7 +45,8 @@
         <activity android:name=".NewUserActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".UserLocationActivity" />
-        <activity android:name=".ContactUsActivity"></activity>
+        <activity android:name=".ContactUsActivity" />
+        <activity android:name=".SweetmansActivity"></activity>
     </application>
 
 </manifest>

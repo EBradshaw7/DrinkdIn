@@ -15,6 +15,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserLocationActivity extends AppCompatActivity {
 
     private TextView tvInfo;
@@ -27,11 +30,11 @@ public class UserLocationActivity extends AppCompatActivity {
     String nameStr;
     String faveBarStr;
     String faveDrinkStr;
-
-
     String checkin;
+
     String checkinList;
     String phouseCheck;
+    String sweetmansCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,28 +74,52 @@ public class UserLocationActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot postSnapshot) {
                 //loop through and print data
                 if (postSnapshot.exists()) {
-
-                    //pass it to string
-                    nameStr = "Name: " + postSnapshot.child("name").getValue();
-
-                    faveDrinkStr = "Favourite Drink: " + postSnapshot.child("drink").getValue();
-
-                    faveBarStr = "Favourite Bar: " + postSnapshot.child("bar").getValue();
-
-                    if (postSnapshot.child("lascheckin").getValue() != "null") {
-                        checkin = "Last check in: " + postSnapshot.child("lascheckin").getValue();
-
-                        //tvInfo.setText(favs + "\n" + checkin);
+                    if (postSnapshot.child("name") == null) {
+                        nameStr = "Name: No name stored";
                         displayUserInfo();
                     }
-                    if (postSnapshot.child("lascheckin").getValue() == "null") {
+                    if (postSnapshot.child("name") != null) {
+                        nameStr = "Name: " + postSnapshot.child("name").getValue();
+                        displayUserInfo();
+                    }
+
+                    if (postSnapshot.child("drink") != null) {
+                        faveDrinkStr = "Favourite Drink: " + postSnapshot.child("drink").getValue();
+                        displayUserInfo();
+                    }
+                    if (postSnapshot.child("drink") == null) {
+                        faveDrinkStr = "Favourite Drink: No favourite drink stored";
+                        displayUserInfo();
+                    }
+
+
+                    if (postSnapshot.child("bar") != null) {
+                        faveBarStr = "Favourite Bar: " + postSnapshot.child("bar").getValue();
+                        displayUserInfo();
+                    }
+                    if (postSnapshot.child("bar") == null) {
+                        faveBarStr = "Favourite Bar: No favourite bar stored";
+                        displayUserInfo();
+                    }
+
+                    if (postSnapshot.child("lascheckin") != null) {
+                        checkin = "Last check in: " + postSnapshot.child("lascheckin").getValue();
+                        displayUserInfo();
+                    }
+                    if (postSnapshot.child("lascheckin").getValue() == null) {
                         // tvInfo.setText(favs + "\nLast check in: No info entered, Yet!"
                         checkin = "Last check in: No Checkins Yet!";
                         displayUserInfo();
                     } else {
                         checkin = "Error no data found";
-
                     }
+
+                }else{
+                    nameStr = "Name: No name stored";
+                    faveBarStr = "Favourite Bar: No favourite bar stored";
+                    faveDrinkStr = "Favourite Bar: No favourite drink stored";
+                    checkin = "Last check in: No Checkins Yet! ";
+                    displayUserInfo();
                 }
 
 
@@ -128,23 +155,33 @@ public class UserLocationActivity extends AppCompatActivity {
             showCheckinInfo.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        //get data from snapshot
+                       for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                           //get data from snapshot
 
-                        if (postSnapshot.child("Porterhouse").getValue() != "null") {
-                            phouseCheck = "Porterhouse, Rating: " +
-                             dataSnapshot.child("Porterhouse").child("Rating").getValue() + ", Date : " +
-                                dataSnapshot.child("Porterhouse").child("timeStamp").getValue();
+                           if (postSnapshot.child("Porterhouse").getValue() == null) {
+                               phouseCheck = "Porterhouse, Rating: " +
+                                       dataSnapshot.child("Porterhouse").child("Rating").getValue() + ", Date : " +
+                                       dataSnapshot.child("Porterhouse").child("timeStamp").getValue();
+                           }else{
+                               phouseCheck = "notChecked";
+                           }
 
 
+                           if (postSnapshot.child("Sweetmans").getValue() == null) {
+                               sweetmansCheck = "Sweetmans, Rating: " +
+                                       dataSnapshot.child("sweetmans").child("Rating").getValue() + ", Date : " +
+                                       dataSnapshot.child("sweetmans").child("timeStamp").getValue();
 
-                            displayValues();
-                            //tvCheckins.setText(checkinList);
-                        }else{
-                            //tvCheckins.setText("No check-ins, yet!");
-                        }
+                           }else{
+                               sweetmansCheck = "notChecked";
+                           }
 
-                    }
+                           displayValues();
+                           //tvCheckins.setText(checkinList);
+
+                       }
+
+
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -159,16 +196,30 @@ public class UserLocationActivity extends AppCompatActivity {
         }
 
     private void displayValues() {
-        String[] checkInList = {
-            phouseCheck
 
-    };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_list, checkInList);
 
-        ListView checkInLV = (ListView) findViewById(R.id.listCheckin);
-        checkInLV.setAdapter(adapter);
+        List<String> checkIn = new ArrayList<String>();
+        checkIn.add(phouseCheck);
+        checkIn.add(sweetmansCheck);
+
+        for(String curVal : checkIn){
+            if(curVal.contains("notChecked") || curVal.contains("null")){
+                checkIn.remove(curVal);
+            }
+        }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    R.layout.activity_list, checkIn);
+
+
+
+
+            ListView checkInLV = (ListView) findViewById(R.id.listCheckin);
+            checkInLV.setAdapter(adapter);
+
+
+            //Toast.makeText(this, "No checkins", Toast.LENGTH_LONG).show();
+
+        }
     }
-
-}
 
