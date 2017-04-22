@@ -47,7 +47,8 @@
         <activity android:name=".UserLocationActivity" />
         <activity android:name=".ContactUsActivity" />
         <activity android:name=".SweetmansActivity" />
-        <activity android:name=".BeerMarketActivity"></activity>
+        <activity android:name=".BeerMarketActivity" />
+        <activity android:name=".HeadlineActivity"></activity>
     </application>
 
 </manifest>

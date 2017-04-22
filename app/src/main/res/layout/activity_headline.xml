@@ -1,8 +1,7 @@
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent" android:layout_height="fill_parent" android:orientation="vertical"
     android:background="#FFB201"
-    android:orientation="vertical"
     >
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +11,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="242dp"
-        tools:context="com.example.eoghan.drinkdin.PorterhouseActivity" />
+        tools:context="com.example.eoghan.drinkdin.HeadlineActivity" />
 
 
     <RelativeLayout
@@ -32,22 +31,25 @@
             android:id="@+id/textView5"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:text="With a focus on Irish brands, and 24 taps dedicated to the best of Irish and International craft Beer, our aim is to provide the highest quality products available, including a large range of independent Irish Gin and Whiskey,and we can safely say you won’t be stuck for choice. Our ground floor bar is open 7 days and our First floor bar is open from Thursday – Saturday from 6 pm. Our kitchen provides the highest quality meals 7 days and we take bookings for both levels"
+            android:textColor="#000000"
+            android:textSize="12sp"
             android:layout_above="@+id/submitRatinBtn"
             android:layout_centerHorizontal="true"
-            android:text="First things first. We are passionate about beer. And not just our beer. We are passionate about all good beer. That's why in 1989 Liam LaHart and Oliver Hughes opened the first Porterhouse and specialised in importing various beers from around the world with a keen eye on Belgium"
-            android:textColor="#000000"
-            android:textSize="12sp" />
+            />
 
         <RatingBar
-            android:id="@+id/phouseRating"
+            android:id="@+id/headlineRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
             android:maxHeight="60dp"
             android:minHeight="60dp"
             android:minWidth="200dp"
-            android:numStars="5" />
+            android:numStars="5"
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true" />
+        <!--style="@style/CustomRatingBar"
+        android:progressDrawable="@drawable/custom_ratingbar_full"-->
 
 
         <Button
@@ -62,8 +64,9 @@
             android:id="@+id/totalRatingTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/phouseRating"
-            android:layout_centerInParent="true" />
+            android:layout_alignBottom="@+id/headlineRating"
+            android:layout_centerInParent="true"
+            />
 
         <TextView
             android:id="@+id/title"
@@ -71,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/checkInBtn"
             android:layout_centerHorizontal="true"
-            android:text="Porterhouse" />
+            android:text="Headline" />
 
     </RelativeLayout>
 </LinearLayout>

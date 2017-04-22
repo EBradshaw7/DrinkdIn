@@ -75,6 +75,9 @@ private TextView ratingTV;
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        getSupportActionBar().setTitle("Sweetmans");
+
+
         //rating bar
         phRating = (RatingBar) findViewById(R.id.sweetmansRating);
         phRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -151,10 +154,11 @@ private TextView ratingTV;
                     case R.id.homeIcon:
                         Intent i = new Intent(com.example.eoghan.drinkdin.SweetmansActivity.this, MainActivity.class);
                         startActivity(i);
-                        //return true;
+                        return true;
                     case R.id.userIcon:
                         Intent j = new Intent(com.example.eoghan.drinkdin.SweetmansActivity.this, UserAreaActivity.class);
                         startActivity(j);
+                        return true;
                     default:
                         return super.onOptionsItemSelected(item);
                 }

@@ -37,6 +37,7 @@ public class UserLocationActivity extends AppCompatActivity {
     String phouseCheck;
     String sweetmansCheck;
     String beermarketCheck;
+    String headlineCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,9 +188,16 @@ public class UserLocationActivity extends AppCompatActivity {
                            }else{
                                 beermarketCheck = "notChecked";
                            }
+                           if (postSnapshot.child("Headline").getValue() == null) {
+                                headlineCheck = "Headline, Rating: " +
+                                       dataSnapshot.child("Headline").child("Rating").getValue() + ", Date : " +
+                                       dataSnapshot.child("Headline").child("timeStamp").getValue();
+
+                           }else{
+                                headlineCheck = "notChecked";
+                           }
 
                            displayValues();
-                           //tvCheckins.setText(checkinList);
 
                        }
 
@@ -214,6 +222,7 @@ public class UserLocationActivity extends AppCompatActivity {
         checkIn.add(phouseCheck);
         checkIn.add(sweetmansCheck);
         checkIn.add(beermarketCheck);
+        checkIn.add(headlineCheck);
 
         for(String curVal : checkIn){
             if(curVal.contains("notChecked") || curVal.contains("null")){

@@ -31,6 +31,7 @@ public class CraftList extends AppCompatActivity {
     String phouseRating;
     String sweetmansRating;
     String beerMarketRating;
+    String headlineRating;
 
     //private ImageView pbar;
     private DatabaseReference databaseReference;
@@ -60,12 +61,14 @@ public class CraftList extends AppCompatActivity {
                         phouseRating = postSnapshot.child("porterhouse").child("averageRating").getValue().toString();
                         sweetmansRating = postSnapshot.child("sweetmans").child("averageRating").getValue().toString();
                         beerMarketRating = postSnapshot.child("beermarket").child("averageRating").getValue().toString();
+                        headlineRating = postSnapshot.child("headline").child("averageRating").getValue().toString();
 
                         setValues();
 
                     } else {
                         phouseRating = "Sorry no rating available";
                         sweetmansRating = "Sorry no rating available";
+                        headlineRating = "Sorry no rating available";
                         beerMarketRating = "Sorry no rating available";
                     }
 
@@ -86,7 +89,8 @@ public class CraftList extends AppCompatActivity {
         String[] craftList = {
                 "Porterhouse " + phouseRating + "\u2605",
                 "Sweetmans " + sweetmansRating + "\u2605",
-                "BeerMarket " + beerMarketRating + "\u2605"
+                "BeerMarket " + beerMarketRating + "\u2605",
+                "57, The Headline " + headlineRating + "\u2605"
 
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -111,6 +115,10 @@ public class CraftList extends AppCompatActivity {
                     case 2:
                         Intent beermarketIntent = new Intent(CraftList.this, BeerMarketActivity.class);
                         startActivity(beermarketIntent);
+                        break;
+                    case 3:
+                        Intent headlineIntent = new Intent(CraftList.this, HeadlineActivity.class);
+                        startActivity(headlineIntent);
                         break;
 
                 }
