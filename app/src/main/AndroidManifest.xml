@@ -52,7 +52,8 @@
         <activity android:name=".BlackSheepActivity" />
         <activity android:name=".GuinnessList" />
         <activity android:name=".BrazenHeadActivity" />
-        <activity android:name=".TempleBarActivity"></activity>
+        <activity android:name=".TempleBarActivity" />
+        <activity android:name=".StagsHeadActivity"></activity>
     </application>
 
 </manifest>

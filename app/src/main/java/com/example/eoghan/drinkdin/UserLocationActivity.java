@@ -41,6 +41,7 @@ public class UserLocationActivity extends AppCompatActivity {
     String blackSheepCheck;
     String brazenheadCheck;
     String templebarCheck;
+    String stagsheadCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,12 +217,20 @@ public class UserLocationActivity extends AppCompatActivity {
                                 brazenheadCheck = "notChecked";
                            }
                            if (postSnapshot.child("TempleBar").getValue() == null) {
-                                templebarCheck = "Brazen Head, Rating: " +
+                                templebarCheck = "Temple Bar, Rating: " +
                                        dataSnapshot.child("TempleBar").child("Rating").getValue() + ", Date : " +
                                        dataSnapshot.child("TempleBar").child("timeStamp").getValue();
 
                            }else{
                                 templebarCheck = "notChecked";
+                           }
+                           if (postSnapshot.child("StagsHead").getValue() == null) {
+                               stagsheadCheck = "Stags Head, Rating: " +
+                                       dataSnapshot.child("StagsHead").child("Rating").getValue() + ", Date : " +
+                                       dataSnapshot.child("StagsHead").child("timeStamp").getValue();
+
+                           }else{
+                               stagsheadCheck = "notChecked";
                            }
 
                            displayValues();
@@ -253,6 +262,7 @@ public class UserLocationActivity extends AppCompatActivity {
         checkIn.add(blackSheepCheck);
         checkIn.add(brazenheadCheck);
         checkIn.add(templebarCheck);
+        checkIn.add(stagsheadCheck);
 
         for(String curVal : checkIn){
             if(curVal.contains("notChecked") || curVal.contains("null")){

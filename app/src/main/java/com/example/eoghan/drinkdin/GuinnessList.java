@@ -27,6 +27,7 @@ public class GuinnessList extends AppCompatActivity {
     //private ProgressDialog pbar;
     String brazenRating;
     String templebarRating;
+    String stagsheadRating;
 
 
     //private ImageView pbar;
@@ -53,20 +54,41 @@ public class GuinnessList extends AppCompatActivity {
         getRatings.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot postSnapshot) {
-                if (postSnapshot.child("averageRating").getValue() != "null") {
+                if (postSnapshot.child("brazenhead").child("averageRating").getValue() != null) {
 
                     //pass it to string
                     brazenRating = postSnapshot.child("brazenhead").child("averageRating").getValue().toString();
                     templebarRating = postSnapshot.child("templebar").child("averageRating").getValue().toString();
 
-                    setValues();
 
                 } else {
                     brazenRating = "Sorry no rating available";
                     templebarRating = "Sorry no rating available";
 
                 }
+                if (postSnapshot.child("templebar").child("averageRating").getValue() != null) {
 
+                    //pass it to string
+                    templebarRating = postSnapshot.child("templebar").child("averageRating").getValue().toString();
+
+
+                } else {
+                    templebarRating = "Sorry no rating available";
+
+                }
+                if (postSnapshot.child("stagshead").child("averageRating").getValue() != null) {
+
+                    //pass it to string
+
+                    stagsheadRating = postSnapshot.child("stagshead").child("averageRating").getValue().toString();
+
+
+                } else {
+
+                    stagsheadRating = "Sorry no rating available";
+
+                }
+                setValues();
             }
 
             @Override
@@ -84,7 +106,8 @@ public class GuinnessList extends AppCompatActivity {
         //creating list to display with unicode stars
         String[] guinnessList = {
                 "Brazen Head " + brazenRating + "\u2605",
-                "The Temple Bar " + templebarRating + "\u2605"
+                "The Temple Bar " + templebarRating + "\u2605",
+                "The Stags Head " + stagsheadRating + "\u2605"
 
 
         };
@@ -110,6 +133,10 @@ public class GuinnessList extends AppCompatActivity {
                     case 1:
                         Intent templeIntent = new Intent(GuinnessList.this, TempleBarActivity.class);
                         startActivity(templeIntent);
+                        break;
+                    case 2:
+                        Intent stagsIntent = new Intent(GuinnessList.this, StagsHeadActivity.class);
+                        startActivity(stagsIntent);
                         break;
 
 
