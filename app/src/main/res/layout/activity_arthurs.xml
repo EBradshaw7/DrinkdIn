@@ -1,0 +1,73 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="fill_parent" android:orientation="vertical"
+    android:background="#FFB201"
+    >
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="242dp"
+        tools:context="com.example.eoghan.drinkdin.ArthursActivity" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/checkInBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Check in" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Arthur's is the nearest pub on the route to The Guinness Storehouse, one of the city's foremost tourist attractions. It is popular both with locals and tourists. Naturally it has the freshest pint of Guinness in all of Ireland. Arthurs is a classic Dublin pub, old style but well appointed. It has been a pub for over 200 years, and has many historical connections, being beside St. Catherines Church, outside of which the patriot, Robert Emmet, was hung, drawn and quartered in 1803."
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:layout_below="@+id/totalRatingTV"
+            android:layout_centerHorizontal="true"
+            />
+
+        <RatingBar
+            android:id="@+id/arthursRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="60dp"
+            android:minHeight="60dp"
+            android:minWidth="200dp"
+            android:numStars="5"
+            android:layout_below="@+id/checkInBtn"
+            android:layout_centerHorizontal="true" />
+
+
+        <Button
+            android:id="@+id/submitRatinBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Rating"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="23dp" />
+
+        <TextView
+            android:id="@+id/totalRatingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_alignBottom="@+id/arthursRating"
+            android:paddingTop="10dp"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

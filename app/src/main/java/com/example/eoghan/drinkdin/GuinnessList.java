@@ -28,6 +28,7 @@ public class GuinnessList extends AppCompatActivity {
     String brazenRating;
     String templebarRating;
     String stagsheadRating;
+    String arthursRating;
 
 
     //private ImageView pbar;
@@ -88,6 +89,18 @@ public class GuinnessList extends AppCompatActivity {
                     stagsheadRating = "Sorry no rating available";
 
                 }
+                if (postSnapshot.child("arthurs").child("averageRating").getValue() != null) {
+
+                    //pass it to string
+
+                    arthursRating = postSnapshot.child("arthurs").child("averageRating").getValue().toString();
+
+
+                } else {
+
+                    arthursRating = "Sorry no rating available";
+
+                }
                 setValues();
             }
 
@@ -107,7 +120,8 @@ public class GuinnessList extends AppCompatActivity {
         String[] guinnessList = {
                 "Brazen Head " + brazenRating + "\u2605",
                 "The Temple Bar " + templebarRating + "\u2605",
-                "The Stags Head " + stagsheadRating + "\u2605"
+                "The Stags Head " + stagsheadRating + "\u2605",
+                "Arthurs " + arthursRating + "\u2605"
 
 
         };
@@ -137,6 +151,10 @@ public class GuinnessList extends AppCompatActivity {
                     case 2:
                         Intent stagsIntent = new Intent(GuinnessList.this, StagsHeadActivity.class);
                         startActivity(stagsIntent);
+                        break;
+                    case 3:
+                        Intent arthursIntent = new Intent(GuinnessList.this, ArthursActivity.class);
+                        startActivity(arthursIntent);
                         break;
 
 

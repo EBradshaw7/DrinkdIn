@@ -53,7 +53,8 @@
         <activity android:name=".GuinnessList" />
         <activity android:name=".BrazenHeadActivity" />
         <activity android:name=".TempleBarActivity" />
-        <activity android:name=".StagsHeadActivity"></activity>
+        <activity android:name=".StagsHeadActivity" />
+        <activity android:name=".ArthursActivity"></activity>
     </application>
 
 </manifest>

@@ -35,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener{
+public class ArthursActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener{
 
 
     //google maps variables
@@ -58,7 +58,7 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
     String averageRatingStr;
 
     //layout elements
-    private RatingBar shRating;
+    private RatingBar arthursRating;
     private Button btnAddToList;
     private Button btnSubmitRating;
     private TextView ratingTV;
@@ -70,18 +70,18 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stags_head);
+        setContentView(R.layout.activity_arthurs);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        getSupportActionBar().setTitle("The Stags Head");
+        getSupportActionBar().setTitle("Arthurs");
 
 
         //rating bar
-        shRating = (RatingBar) findViewById(R.id.stagRating);
-        shRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        arthursRating = (RatingBar) findViewById(R.id.arthursRating);
+        arthursRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 //pass float value to string for storage
@@ -109,12 +109,12 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
         }
 
         //retrieve the average rating to display
-        Query readRatingAvg = databaseReference.child("ratings").child("stagshead");
+        Query readRatingAvg = databaseReference.child("ratings").child("arthurs");
         readRatingAvg.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //get data from snapshot ensure it is not null
-                if (dataSnapshot.child("stagshead").child("averageRating").getValue() == null) {
+                if (dataSnapshot.child("arthurs").child("averageRating").getValue() == null) {
 
                     //get value and pass it to string
                     String avgRating = dataSnapshot.child("averageRating").getValue().toString();
@@ -151,12 +151,12 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.homeIcon:
-                Intent i = new Intent(StagsHeadActivity.this, MainActivity.class);
+                Intent i = new Intent(ArthursActivity.this, MainActivity.class);
                 startActivity(i);
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(StagsHeadActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(ArthursActivity.this, UserAreaActivity.class);
                 startActivity(j);
                 return true;
 
@@ -181,7 +181,7 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
         mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lon))
-                .title("Stags Head"));
+                .title("Arthurs"));
 
 
         // Enabling MyLocation Layer of Google Map
@@ -247,10 +247,10 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
 
                 //add the rating to the rating table
                 databaseReference.child("checkin").child(
-                        user.getUid()).child("StagsHead").child("Rating").setValue(ratingStr);
+                        user.getUid()).child("Arthurs").child("Rating").setValue(ratingStr);
 
                 //add to the number of ratings stored once the rating is submitted
-                Query RetrieveRatingCount = databaseReference.child("ratings").child("stagshead");
+                Query RetrieveRatingCount = databaseReference.child("ratings").child("arthurs");
                 RetrieveRatingCount.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot postSnapshot) {
@@ -272,7 +272,7 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
                             ratingCounter = Integer.toString(count);
 
                             //post string to ratings counter table
-                            databaseReference.child("ratings").child("stagshead").child("numRating").setValue(ratingCounter);
+                            databaseReference.child("ratings").child("arthurs").child("numRating").setValue(ratingCounter);
 
                         }
                     }
@@ -284,7 +284,7 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
                 });
 
                 //this query is to add the total value of all ratings
-                Query addRatingTotal = databaseReference.child("ratings").child("stagshead");
+                Query addRatingTotal = databaseReference.child("ratings").child("arthurs");
                 addRatingTotal.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot postSnapshot2) {
@@ -308,7 +308,7 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
                         newRatingTotal = Float.toString(ratingTotal);
 
                         //post new value to database
-                        databaseReference.child("ratings").child("stagshead").child("totalRating").setValue(newRatingTotal);
+                        databaseReference.child("ratings").child("arthurs").child("totalRating").setValue(newRatingTotal);
 
                     }
 
@@ -320,7 +320,7 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
                 });
 
                 //this is to calculate the average rating of all user ratings
-                Query calcAverage = databaseReference.child("ratings").child("stagshead");
+                Query calcAverage = databaseReference.child("ratings").child("arthurs");
                 calcAverage.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot postSnapshot3) {
@@ -339,7 +339,7 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
                         averageRatingStr = Double.toString(avgRatingRounded);
 
                         //post it to database
-                        databaseReference.child("ratings").child("stagshead").child("averageRating").setValue(averageRatingStr);
+                        databaseReference.child("ratings").child("arthurs").child("averageRating").setValue(averageRatingStr);
 
                     }
 
@@ -388,10 +388,10 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
             String date = dateFormat.format(new Date());
 
             //set to true if the user hits check in as they have now visited this pub
-            databaseReference.child("checkin").child(user.getUid()).child("StagsHead").child("timeStamp").setValue(date);
+            databaseReference.child("checkin").child(user.getUid()).child("Arthurs").child("timeStamp").setValue(date);
 
             //set this pub as last check in, over writing previous
-            databaseReference.child("users").child(user.getUid()).child("lascheckin").setValue("Stags Head");
+            databaseReference.child("users").child(user.getUid()).child("lascheckin").setValue("Arthurs");
 
             //confirm to user that this was succsessful
             Toast.makeText(this, "Added to check ins", Toast.LENGTH_LONG).show();
@@ -402,6 +402,5 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
 
         }
     }
-
 
 }
