@@ -32,6 +32,7 @@ public class CraftList extends AppCompatActivity {
     String sweetmansRating;
     String beerMarketRating;
     String headlineRating;
+    String blacksheepRating;
 
     //private ImageView pbar;
     private DatabaseReference databaseReference;
@@ -62,6 +63,7 @@ public class CraftList extends AppCompatActivity {
                         sweetmansRating = postSnapshot.child("sweetmans").child("averageRating").getValue().toString();
                         beerMarketRating = postSnapshot.child("beermarket").child("averageRating").getValue().toString();
                         headlineRating = postSnapshot.child("headline").child("averageRating").getValue().toString();
+                        blacksheepRating = postSnapshot.child("blacksheep").child("averageRating").getValue().toString();
 
                         setValues();
 
@@ -70,6 +72,7 @@ public class CraftList extends AppCompatActivity {
                         sweetmansRating = "Sorry no rating available";
                         headlineRating = "Sorry no rating available";
                         beerMarketRating = "Sorry no rating available";
+                        blacksheepRating = "Sorry no rating available";
                     }
 
                 }
@@ -89,8 +92,9 @@ public class CraftList extends AppCompatActivity {
         String[] craftList = {
                 "Porterhouse " + phouseRating + "\u2605",
                 "Sweetmans " + sweetmansRating + "\u2605",
-                "BeerMarket " + beerMarketRating + "\u2605",
-                "57, The Headline " + headlineRating + "\u2605"
+                "Beer Market " + beerMarketRating + "\u2605",
+                "57, The Headline " + headlineRating + "\u2605",
+                "The Black Sheep " + blacksheepRating + "\u2605"
 
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -119,6 +123,10 @@ public class CraftList extends AppCompatActivity {
                     case 3:
                         Intent headlineIntent = new Intent(CraftList.this, HeadlineActivity.class);
                         startActivity(headlineIntent);
+                        break;
+                    case 4:
+                        Intent blacksheepIntent = new Intent(CraftList.this, BlackSheepActivity.class);
+                        startActivity(blacksheepIntent);
                         break;
 
                 }

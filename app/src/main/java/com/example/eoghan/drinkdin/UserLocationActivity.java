@@ -38,6 +38,7 @@ public class UserLocationActivity extends AppCompatActivity {
     String sweetmansCheck;
     String beermarketCheck;
     String headlineCheck;
+    String blackSheepCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,6 +197,14 @@ public class UserLocationActivity extends AppCompatActivity {
                            }else{
                                 headlineCheck = "notChecked";
                            }
+                           if (postSnapshot.child("BlackSheep").getValue() == null) {
+                                blackSheepCheck = "Black Sheep, Rating: " +
+                                       dataSnapshot.child("BlackSheep").child("Rating").getValue() + ", Date : " +
+                                       dataSnapshot.child("BlackSheep").child("timeStamp").getValue();
+
+                           }else{
+                                blackSheepCheck = "notChecked";
+                           }
 
                            displayValues();
 
@@ -223,6 +232,7 @@ public class UserLocationActivity extends AppCompatActivity {
         checkIn.add(sweetmansCheck);
         checkIn.add(beermarketCheck);
         checkIn.add(headlineCheck);
+        checkIn.add(blackSheepCheck);
 
         for(String curVal : checkIn){
             if(curVal.contains("notChecked") || curVal.contains("null")){

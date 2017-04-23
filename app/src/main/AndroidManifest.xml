@@ -48,7 +48,8 @@
         <activity android:name=".ContactUsActivity" />
         <activity android:name=".SweetmansActivity" />
         <activity android:name=".BeerMarketActivity" />
-        <activity android:name=".HeadlineActivity"></activity>
+        <activity android:name=".HeadlineActivity" />
+        <activity android:name=".BlackSheepActivity"></activity>
     </application>
 
 </manifest>
