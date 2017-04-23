@@ -43,6 +43,7 @@ public class UserLocationActivity extends AppCompatActivity {
     String templebarCheck;
     String stagsheadCheck;
     String arthursCheck;
+    String grogansCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,6 +242,14 @@ public class UserLocationActivity extends AppCompatActivity {
                            }else{
                                arthursCheck = "notChecked";
                            }
+                           if (postSnapshot.child("Grogans").getValue() == null) {
+                               grogansCheck = "Grogans, Rating: " +
+                                       dataSnapshot.child("Grogans").child("Rating").getValue() + ", Date : " +
+                                       dataSnapshot.child("Grogans").child("timeStamp").getValue();
+
+                           }else{
+                               grogansCheck = "notChecked";
+                           }
 
                            displayValues();
 
@@ -273,6 +282,7 @@ public class UserLocationActivity extends AppCompatActivity {
         checkIn.add(templebarCheck);
         checkIn.add(stagsheadCheck);
         checkIn.add(arthursCheck);
+        checkIn.add(grogansCheck);
 
         for(String curVal : checkIn){
             if(curVal.contains("notChecked") || curVal.contains("null")){

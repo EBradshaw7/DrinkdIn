@@ -54,7 +54,8 @@
         <activity android:name=".BrazenHeadActivity" />
         <activity android:name=".TempleBarActivity" />
         <activity android:name=".StagsHeadActivity" />
-        <activity android:name=".ArthursActivity"></activity>
+        <activity android:name=".ArthursActivity" />
+        <activity android:name=".GrogansActivity"></activity>
     </application>
 
 </manifest>

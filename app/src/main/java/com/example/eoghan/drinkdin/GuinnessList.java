@@ -24,11 +24,13 @@ public class GuinnessList extends AppCompatActivity {
 
     AnimationDrawable frameAnimation;
 
-    //private ProgressDialog pbar;
+    //Popullate list views with ratings
     String brazenRating;
     String templebarRating;
     String stagsheadRating;
     String arthursRating;
+    String grogansRating;
+
 
 
     //private ImageView pbar;
@@ -101,6 +103,18 @@ public class GuinnessList extends AppCompatActivity {
                     arthursRating = "Sorry no rating available";
 
                 }
+                if (postSnapshot.child("grogans").child("averageRating").getValue() != null) {
+
+                    //pass it to string
+
+                    grogansRating = postSnapshot.child("grogans").child("averageRating").getValue().toString();
+
+
+                } else {
+
+                    grogansRating = "Sorry no rating available";
+
+                }
                 setValues();
             }
 
@@ -121,7 +135,8 @@ public class GuinnessList extends AppCompatActivity {
                 "Brazen Head " + brazenRating + "\u2605",
                 "The Temple Bar " + templebarRating + "\u2605",
                 "The Stags Head " + stagsheadRating + "\u2605",
-                "Arthurs " + arthursRating + "\u2605"
+                "Arthurs " + arthursRating + "\u2605",
+                "Grogans " + grogansRating + "\u2605"
 
 
         };
@@ -155,6 +170,10 @@ public class GuinnessList extends AppCompatActivity {
                     case 3:
                         Intent arthursIntent = new Intent(GuinnessList.this, ArthursActivity.class);
                         startActivity(arthursIntent);
+                        break;
+                    case 4:
+                        Intent grogansIntent = new Intent(GuinnessList.this, GrogansActivity.class);
+                        startActivity(grogansIntent);
                         break;
 
 

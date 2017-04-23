@@ -1,0 +1,73 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="fill_parent" android:orientation="vertical"
+    android:background="#FFB201"
+    >
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="242dp"
+        tools:context="com.example.eoghan.drinkdin.GrogansActivity" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/checkInBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Check in" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="A warm and friendly atmosphere that you would expect from your local, but with the lively buzz and intensity of an authentic Dublin city pub. Relax with a drink and toastie. Open 7 days a week, Grogans is the perfect spot to grab a light snack, a pint of porter or a pot of tea.  Our famous toasties made with Irish cheddar cheese and traditional deli ham are available throughout the day and night. If you ask us for a ‘Special’ we guarantee that you will not be disappointed."
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:layout_below="@+id/totalRatingTV"
+            android:layout_centerHorizontal="true"
+            />
+
+        <RatingBar
+            android:id="@+id/grogansRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="60dp"
+            android:minHeight="60dp"
+            android:minWidth="200dp"
+            android:numStars="5"
+            android:layout_below="@+id/checkInBtn"
+            android:layout_centerHorizontal="true" />
+
+
+        <Button
+            android:id="@+id/submitRatinBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Rating"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="23dp" />
+
+        <TextView
+            android:id="@+id/totalRatingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_alignBottom="@+id/grogansRating"
+            android:paddingTop="10dp"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+</LinearLayout>
