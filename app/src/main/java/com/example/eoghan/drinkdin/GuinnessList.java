@@ -17,11 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * Created by Eoghan on 07/12/2016.
- */
+public class GuinnessList extends AppCompatActivity {
 
-public class CraftList extends AppCompatActivity {
 
     ImageView pbar;
 
@@ -62,19 +59,12 @@ public class CraftList extends AppCompatActivity {
 
                     //pass it to string
                     phouseRating = postSnapshot.child("porterhouse").child("averageRating").getValue().toString();
-                    sweetmansRating = postSnapshot.child("sweetmans").child("averageRating").getValue().toString();
-                    beerMarketRating = postSnapshot.child("beermarket").child("averageRating").getValue().toString();
-                    headlineRating = postSnapshot.child("headline").child("averageRating").getValue().toString();
-                    blacksheepRating = postSnapshot.child("blacksheep").child("averageRating").getValue().toString();
 
                     setValues();
 
                 } else {
                     phouseRating = "Sorry no rating available";
-                    sweetmansRating = "Sorry no rating available";
-                    headlineRating = "Sorry no rating available";
-                    beerMarketRating = "Sorry no rating available";
-                    blacksheepRating = "Sorry no rating available";
+
                 }
 
             }
@@ -92,18 +82,15 @@ public class CraftList extends AppCompatActivity {
     public void setValues() {
 
         //creating list to display with unicode stars
-        String[] craftList = {
-                "Porterhouse " + phouseRating + "\u2605",
-                "Sweetmans " + sweetmansRating + "\u2605",
-                "Beer Market " + beerMarketRating + "\u2605",
-                "57, The Headline " + headlineRating + "\u2605",
-                "The Black Sheep " + blacksheepRating + "\u2605"
+        String[] guinnessList = {
+                "Porterhouse " + phouseRating + "\u2605"
+
 
         };
 
         //adapter for list
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_list, craftList);
+                R.layout.activity_list, guinnessList);
 
         //create list view and add style
         ListView list = (ListView) findViewById(R.id.listCraft);
@@ -116,25 +103,10 @@ public class CraftList extends AppCompatActivity {
                                     int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent phouseIntent = new Intent(CraftList.this, PorterhouseActivity.class);
+                        Intent phouseIntent = new Intent(GuinnessList.this, PorterhouseActivity.class);
                         startActivity(phouseIntent);
                         break;
-                    case 1:
-                        Intent sweetmansIntent = new Intent(CraftList.this, SweetmansActivity.class);
-                        startActivity(sweetmansIntent);
-                        break;
-                    case 2:
-                        Intent beermarketIntent = new Intent(CraftList.this, BeerMarketActivity.class);
-                        startActivity(beermarketIntent);
-                        break;
-                    case 3:
-                        Intent headlineIntent = new Intent(CraftList.this, HeadlineActivity.class);
-                        startActivity(headlineIntent);
-                        break;
-                    case 4:
-                        Intent blacksheepIntent = new Intent(CraftList.this, BlackSheepActivity.class);
-                        startActivity(blacksheepIntent);
-                        break;
+
 
                 }
 
@@ -150,4 +122,5 @@ public class CraftList extends AppCompatActivity {
 
     }
 
+    
 }

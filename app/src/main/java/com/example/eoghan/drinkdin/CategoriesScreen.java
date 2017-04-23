@@ -40,6 +40,9 @@ public class CategoriesScreen extends AppCompatActivity{
                     case 0:  Intent craftActivity = new Intent(CategoriesScreen.this, CraftList.class);
                         startActivity(craftActivity);
                         break;
+                    case 1:  Intent guinnessActivity = new Intent(CategoriesScreen.this, GuinnessList.class);
+                        startActivity(guinnessActivity);
+                        break;
 
 
 

@@ -49,7 +49,8 @@
         <activity android:name=".SweetmansActivity" />
         <activity android:name=".BeerMarketActivity" />
         <activity android:name=".HeadlineActivity" />
-        <activity android:name=".BlackSheepActivity"></activity>
+        <activity android:name=".BlackSheepActivity" />
+        <activity android:name=".GuinnessList"></activity>
     </application>
 
 </manifest>
