@@ -25,11 +25,9 @@ public class GuinnessList extends AppCompatActivity {
     AnimationDrawable frameAnimation;
 
     //private ProgressDialog pbar;
-    String phouseRating;
-    String sweetmansRating;
-    String beerMarketRating;
-    String headlineRating;
-    String blacksheepRating;
+    String brazenRating;
+    String templebarRating;
+
 
     //private ImageView pbar;
     private DatabaseReference databaseReference;
@@ -40,7 +38,7 @@ public class GuinnessList extends AppCompatActivity {
         setContentView(R.layout.activity_craft);
 
         //set title
-        getSupportActionBar().setTitle("List of Craft Pubs");
+        getSupportActionBar().setTitle("List of Pubs With Great Guinness");
 
         //using image as progress bar
         pbar = (ImageView) findViewById(R.id.pintAniImg);
@@ -58,12 +56,14 @@ public class GuinnessList extends AppCompatActivity {
                 if (postSnapshot.child("averageRating").getValue() != "null") {
 
                     //pass it to string
-                    phouseRating = postSnapshot.child("porterhouse").child("averageRating").getValue().toString();
+                    brazenRating = postSnapshot.child("brazenhead").child("averageRating").getValue().toString();
+                    templebarRating = postSnapshot.child("templebar").child("averageRating").getValue().toString();
 
                     setValues();
 
                 } else {
-                    phouseRating = "Sorry no rating available";
+                    brazenRating = "Sorry no rating available";
+                    templebarRating = "Sorry no rating available";
 
                 }
 
@@ -83,7 +83,8 @@ public class GuinnessList extends AppCompatActivity {
 
         //creating list to display with unicode stars
         String[] guinnessList = {
-                "Porterhouse " + phouseRating + "\u2605"
+                "Brazen Head " + brazenRating + "\u2605",
+                "The Temple Bar " + templebarRating + "\u2605"
 
 
         };
@@ -103,8 +104,12 @@ public class GuinnessList extends AppCompatActivity {
                                     int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent phouseIntent = new Intent(GuinnessList.this, PorterhouseActivity.class);
-                        startActivity(phouseIntent);
+                        Intent brazenIntent = new Intent(GuinnessList.this, BrazenHeadActivity.class);
+                        startActivity(brazenIntent);
+                        break;
+                    case 1:
+                        Intent templeIntent = new Intent(GuinnessList.this, TempleBarActivity.class);
+                        startActivity(templeIntent);
                         break;
 
 

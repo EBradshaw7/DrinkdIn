@@ -50,7 +50,9 @@
         <activity android:name=".BeerMarketActivity" />
         <activity android:name=".HeadlineActivity" />
         <activity android:name=".BlackSheepActivity" />
-        <activity android:name=".GuinnessList"></activity>
+        <activity android:name=".GuinnessList" />
+        <activity android:name=".BrazenHeadActivity" />
+        <activity android:name=".TempleBarActivity"></activity>
     </application>
 
 </manifest>
