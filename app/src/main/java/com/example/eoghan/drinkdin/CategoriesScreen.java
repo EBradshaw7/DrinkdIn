@@ -37,11 +37,14 @@ public class CategoriesScreen extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 switch(position){
-                    case 0:  Intent craftActivity = new Intent(CategoriesScreen.this, CraftList.class);
-                        startActivity(craftActivity);
+                    case 0:  Intent craftIntent = new Intent(CategoriesScreen.this, CraftList.class);
+                        startActivity(craftIntent);
                         break;
-                    case 1:  Intent guinnessActivity = new Intent(CategoriesScreen.this, GuinnessList.class);
-                        startActivity(guinnessActivity);
+                    case 1:  Intent guinnessIntent = new Intent(CategoriesScreen.this, GuinnessList.class);
+                        startActivity(guinnessIntent);
+                        break;
+                    case 2:  Intent whiskeyIntent = new Intent(CategoriesScreen.this, WhiskeyList.class);
+                        startActivity(whiskeyIntent);
                         break;
 
 

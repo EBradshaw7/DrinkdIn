@@ -19,7 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class GuinnessList extends AppCompatActivity {
 
-
     ImageView pbar;
 
     AnimationDrawable frameAnimation;
@@ -39,7 +38,7 @@ public class GuinnessList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_craft);
+        setContentView(R.layout.activity_guinness_list);
 
         //set title
         getSupportActionBar().setTitle("List of Pubs With Great Guinness");
@@ -146,7 +145,7 @@ public class GuinnessList extends AppCompatActivity {
                 R.layout.activity_list, guinnessList);
 
         //create list view and add style
-        ListView list = (ListView) findViewById(R.id.listCraft);
+        ListView list = (ListView) findViewById(R.id.listGuinness);
         list.setAdapter(adapter);
 
         //set onclick for list
