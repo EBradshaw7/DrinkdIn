@@ -12,14 +12,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-public class WexfordStCrawl extends FragmentActivity implements OnMapReadyCallback {
+public class CamdenStCrawl extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wexford_st_crawl);
+        setContentView(R.layout.activity_camden_st_crawl);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -43,14 +43,14 @@ public class WexfordStCrawl extends FragmentActivity implements OnMapReadyCallba
 
             PolylineOptions line = new PolylineOptions().add(new LatLng(53.335368341564546,-6.265381003704874),
                     new LatLng(53.3348491101932,-6.265434647885172),
-                    new LatLng(53.333449279606704,-6.264920067459116)). width(5).color(Color.GREEN);
+                    new LatLng(53.333449279606704,-6.264920067459116)). width(5).color(Color.RED);
             mMap.addPolyline(line);
 
             mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(53.335368341564546,-6.265381003704874)));
 
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+            mMap.moveCamera(CameraUpdateFactory.zoomTo(16));
             mMap.addMarker(new MarkerOptions().position(new LatLng(53.335368341564546,-6.265381003704874)).title("Karma Stone"));
-            mMap.addMarker(new MarkerOptions().position(new LatLng(53.3348491101932,-6.265434647885172)).title("Diceys"));
+            mMap.addMarker(new MarkerOptions().position(new LatLng(53.3348491101932,-6.265434647885172)).title("Camden Exchange"));
             mMap.addMarker(new MarkerOptions().position(new LatLng(53.333449279606704,-6.264920067459116)).title("Bleeding horse"));
 
         }
