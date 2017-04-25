@@ -4,41 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#FFB201"
     tools:context="com.example.eoghan.drinkdin.UserAreaActivity">
+
+    <TextView
+        android:id="@+id/welcomeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/lgoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Log out"
-        android:layout_above="@+id/checkBtn"
+        android:layout_above="@+id/backBtn"
         android:layout_alignStart="@+id/backBtn" />
 
     <Button
         android:id="@+id/checkBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
         android:text="My Check-ins"
         android:layout_above="@+id/backBtn"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginBottom="47dp" />
 
     <Button
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Back"
-        android:layout_marginBottom="57dp"
-        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/welcomeTV"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        app:srcCompat="@mipmap/pic"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        android:text="" />
+        android:layout_marginBottom="15dp" />
 
 </RelativeLayout>

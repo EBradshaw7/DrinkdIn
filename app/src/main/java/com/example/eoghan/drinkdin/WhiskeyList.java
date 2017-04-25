@@ -78,7 +78,7 @@ public class WhiskeyList extends AppCompatActivity {
 
         //creating list to display with unicode stars
         String[] guinnessList = {
-                "Brazen Head " + dingleRating + "\u2605",
+                "The Dingle Bar " + dingleRating + "\u2605",
 
         };
 

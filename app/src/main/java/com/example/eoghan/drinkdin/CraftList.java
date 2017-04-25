@@ -35,7 +35,7 @@ public class CraftList extends AppCompatActivity {
     String blacksheepRating;
 
     //private ImageView pbar;
-    private DatabaseReference databaseReference;
+   //rivate DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class CraftList extends AppCompatActivity {
         frameAnimation.start();
 
         //get reference from firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
         //query firebase to display rating
         Query getRatings = databaseReference.child("ratings");

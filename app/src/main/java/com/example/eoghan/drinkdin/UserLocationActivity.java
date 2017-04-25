@@ -64,28 +64,10 @@ public class UserLocationActivity extends AppCompatActivity {
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        Query getLastCheckin = databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid());
-        getLastCheckin.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    lastCheckin = dataSnapshot.child("lascheckin").getValue().toString();
-
-                }
-
-
-
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        if (lastCheckin == null){
+       /* if (lastCheckin == null){
             lastCheckin = "No Last Checkin Stored";
-        }
+        }*/
 
 
         tvUsername = (TextView) findViewById(R.id.userNameTV);
@@ -93,14 +75,44 @@ public class UserLocationActivity extends AppCompatActivity {
 
 
         tvUsername.setText("User: " + user.getEmail());
-        tvLastcheckin.setText("Last Check-In: " + lastCheckin);
+
 
 
         //call method to show data
-        //showInfo();
+        showInfo();
         showCheckins();
     }
 
+    private void showInfo() {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        Query getLastCheckin = databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid());
+        getLastCheckin.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                    if (postSnapshot.getKey().equals("lascheckin")) {
+                        if (postSnapshot.child("lascheckin").exists()) {
+                            lastCheckin = postSnapshot.child("lascheckin").getValue().toString();
+                        }
+                    }
+                }
+                setInfo();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void setInfo() {
+
+        tvLastcheckin.setText("Last Check-In: " + lastCheckin);
+
+    }
 
 
     private void showCheckins() {
@@ -110,77 +122,76 @@ public class UserLocationActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                           /*if (postSnapshot.child("Porterhouse").getValue() == null) {
-                               phouseCheck = "Porterhouse, Rating: " +
+
+                           if (postSnapshot.getKey().equals("Porterhouse")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                   phouseCheck = "Porterhouse, Rating: " +
                                        dataSnapshot.child("Porterhouse").child("Rating").getValue() + ", Date : " +
                                        dataSnapshot.child("Porterhouse").child("timeStamp").getValue();
-                           }else{
-                               phouseCheck = "notChecked";
+                                }
+
                            }
-
-
-                           if (postSnapshot.child("Sweetmans").getValue() == null) {
-                               sweetmansCheck = "Sweetmans, Rating: " +
+                           if (postSnapshot.getKey().equals("sweetmans")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                   sweetmansCheck = "Sweetmans, Rating: " +
                                        dataSnapshot.child("sweetmans").child("Rating").getValue() + ", Date : " +
                                        dataSnapshot.child("sweetmans").child("timeStamp").getValue();
 
-                           }else{
-                               sweetmansCheck = "notChecked";
+                                }
+
                            }
-
-
-                           if (postSnapshot.child("BeerMarket").getValue() == null) {
-                               beermarketCheck = "BeerMarket, Rating: " +
+                           if (postSnapshot.getKey().equals("Beermarket")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                   beermarketCheck = "BeerMarket, Rating: " +
                                        dataSnapshot.child("Beermarket").child("Rating").getValue() + ", Date : " +
                                        dataSnapshot.child("Beermarket").child("timeStamp").getValue();
 
-                           }else{
-                               beermarketCheck = "notChecked";
+                                }
+
                            }
-                           if (postSnapshot.child("Headline").getValue() == null) {
-                               headlineCheck = "Headline, Rating: " +
-                                       dataSnapshot.child("Headline").child("Rating").getValue() + ", Date : " +
+                           if (postSnapshot.getKey().equals("Headline")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                   headlineCheck = "Headline, Rating: " +
+                                       dataSnapshot.child("Headline").child("Rating").getValue() +  ", Date : " +
                                        dataSnapshot.child("Headline").child("timeStamp").getValue();
 
-                           }else{
-                               headlineCheck = "notChecked";
+                                }
+
                            }
-                           if (postSnapshot.child("BlackSheep").getValue() == null) {
-                               blackSheepCheck = "Black Sheep, Rating: " +
+                           if (postSnapshot.getKey().equals("BlackSheep")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                   blackSheepCheck = "Black Sheep, Rating: " +
                                        dataSnapshot.child("BlackSheep").child("Rating").getValue() + ", Date : " +
                                        dataSnapshot.child("BlackSheep").child("timeStamp").getValue();
 
-                           }else{
-                               blackSheepCheck = "notChecked";
+                                }
+
                            }
-                           if (postSnapshot.child("BrazenHead").getValue() == null) {
-                               brazenheadCheck = "Brazen Head, Rating: " +
+                           if (postSnapshot.getKey().equals("BrazenHead")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                   brazenheadCheck = "Brazen Head, Rating: " +
                                        dataSnapshot.child("BrazenHead").child("Rating").getValue() + ", Date : " +
                                        dataSnapshot.child("BrazenHead").child("timeStamp").getValue();
 
-                           }else{
-                               brazenheadCheck = "notChecked";
+                                }
+
                            }
-                           if (postSnapshot.child("TempleBar").getValue() == null) {
-                               templebarCheck = "Temple Bar, Rating: " +
+                           if (postSnapshot.getKey().equals("TempleBar")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                   templebarCheck = "Temple Bar, Rating: " +
                                        dataSnapshot.child("TempleBar").child("Rating").getValue() + ", Date : " +
                                        dataSnapshot.child("TempleBar").child("timeStamp").getValue();
+                                 }
 
-                           }else{
-                               templebarCheck = "notChecked";
-                           }*/
+                           }
                            if (postSnapshot.getKey().equals("StagsHead")) {
                                if (postSnapshot.hasChild("timeStamp")) {
                                    stagsheadCheck = "Stags Head, Rating: " +
                                            dataSnapshot.child("StagsHead").child("Rating").getValue() + ", Date : " +
                                            dataSnapshot.child("StagsHead").child("timeStamp").getValue();
 
-                               }else {
-                                   stagsheadCheck = "notChecked";
                                }
 
-                           } else if (!postSnapshot.exists()){
-                               stagsheadCheck = "notChecked";
                            }
 
                            if (postSnapshot.getKey().equals("Arthurs")) {
@@ -191,8 +202,6 @@ public class UserLocationActivity extends AppCompatActivity {
 
                                }
 
-                           } else if (!postSnapshot.exists()) {
-                               arthursCheck = "notChecked";
                            }
 
                            if (postSnapshot.getKey().equals("Grogans")) {
@@ -202,8 +211,14 @@ public class UserLocationActivity extends AppCompatActivity {
                                            dataSnapshot.child("Grogans").child("timeStamp").getValue();
 
                                }
-                           }else if(!postSnapshot.exists()) {
-                               grogansCheck = "notChecked";
+                           }
+                           if (postSnapshot.getKey().equals("Dingle")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                   dingleCheck = "Dingle, Rating: " +
+                                           dataSnapshot.child("Dingle").child("Rating").getValue() + ", Date : " +
+                                           dataSnapshot.child("Dingle").child("timeStamp").getValue();
+
+                               }
                            }
                        }
                     displayValues();
@@ -225,27 +240,28 @@ public class UserLocationActivity extends AppCompatActivity {
 
 
         List<Object> checkInList = new ArrayList<>();
-        /*checkInList.add(phouseCheck);
+        checkInList.add(phouseCheck);
         checkInList.add(sweetmansCheck);
         checkInList.add(beermarketCheck);
         checkInList.add(headlineCheck);
         checkInList.add(blackSheepCheck);
         checkInList.add(brazenheadCheck);
-        checkInList.add(templebarCheck);*/
+        checkInList.add(templebarCheck);
         checkInList.add(stagsheadCheck);
         checkInList.add(arthursCheck);
         checkInList.add(grogansCheck);
-        //checkInList.add(dingleCheck);
+        checkInList.add(dingleCheck);
 
 
-        for(int i = 0 ; i<checkInList.size(); i++)
-        {
-            Object item = checkInList.get(i);
-            if(item == null)
-            {
-                checkInList.remove(i);
+
+            for (int i = 0; i < checkInList.size(); i++) {
+                Object item = checkInList.get(i);
+                if (item == null) {
+                    checkInList.remove(i);
+                }
             }
-        }
+
+
 
       /*  for(String curVal : checkInList){
             if(curVal.contains("notChecked") || curVal.contains("null")){
@@ -266,13 +282,10 @@ public class UserLocationActivity extends AppCompatActivity {
                     R.layout.activity_list, checkInList);
 
 
-
-
             ListView checkInLV = (ListView) findViewById(R.id.listCheckin);
             checkInLV.setAdapter(adapter);
 
 
-            //Toast.makeText(this, "No checkins", Toast.LENGTH_LONG).show();
 
         }
     }
