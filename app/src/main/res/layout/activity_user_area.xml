@@ -7,79 +7,38 @@
     android:background="#FFB201"
     tools:context="com.example.eoghan.drinkdin.UserAreaActivity">
 
-    <TextView
-        android:id="@+id/welcomeTV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:id="@+id/lgoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log out"
-        android:layout_alignBaseline="@+id/saveBtn"
-        android:layout_alignBottom="@+id/saveBtn"
-        android:layout_alignEnd="@+id/etDrink" />
+        android:layout_above="@+id/checkBtn"
+        android:layout_alignStart="@+id/backBtn" />
 
     <Button
         android:id="@+id/checkBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Check-ins"
-        android:layout_below="@+id/saveBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp" />
-
-    <Button
-        android:id="@+id/saveBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        android:layout_below="@+id/etDrink"
-        android:layout_alignStart="@+id/etDrink"
-        android:layout_marginTop="72dp" />
-
-    <EditText
-        android:id="@+id/etBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:ems="10"
-        android:hint="Favourite Bar"
-        android:inputType="textPersonName"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/backBtn"
         android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:id="@+id/etDrink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Favourite Drink"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/etBar"
-        android:layout_alignStart="@+id/etBar" />
 
     <Button
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/checkBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="Back" />
+        android:text="Back"
+        android:layout_marginBottom="57dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:id="@+id/etName1"
+    <TextView
+        android:id="@+id/welcomeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/etDrink"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="45dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="110dp"
+        android:text="" />
+
 </RelativeLayout>
