@@ -89,14 +89,13 @@ public class UserLocationActivity extends AppCompatActivity {
         Query getLastCheckin = databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid());
         getLastCheckin.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                    if (postSnapshot.getKey().equals("lascheckin")) {
-                        if (postSnapshot.child("lascheckin").exists()) {
-                            lastCheckin = postSnapshot.child("lascheckin").getValue().toString();
+            public void onDataChange(DataSnapshot postSnapshot) {
+                if (postSnapshot.exists()){
+                        if (postSnapshot.child("lascheckin").getValue() != null) {
+                            lastCheckin = "Last Check-in: " + postSnapshot.child("lascheckin").getValue();
+                        }else {
+                            lastCheckin = "Last Check-in: No last check-in found";
                         }
-                    }
                 }
                 setInfo();
             }
@@ -110,7 +109,7 @@ public class UserLocationActivity extends AppCompatActivity {
 
     private void setInfo() {
 
-        tvLastcheckin.setText("Last Check-In: " + lastCheckin);
+        tvLastcheckin.setText(lastCheckin);
 
     }
 
