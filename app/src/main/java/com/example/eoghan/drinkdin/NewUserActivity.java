@@ -93,10 +93,6 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-
-  /*  private void signin() {
-    }*/
-
     @Override
     public void onClick(View v) {
         if (v == btnRegister) {
