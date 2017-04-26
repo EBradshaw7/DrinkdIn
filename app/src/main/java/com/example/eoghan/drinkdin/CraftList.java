@@ -34,8 +34,6 @@ public class CraftList extends AppCompatActivity {
     String headlineRating;
     String blacksheepRating;
 
-    //private ImageView pbar;
-   //rivate DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

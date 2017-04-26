@@ -49,6 +49,9 @@ public class UserLocationActivity extends AppCompatActivity {
     //whiskey
     String dingleCheck;
 
+    //cocktail
+    String alfiesCheck;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -219,6 +222,14 @@ public class UserLocationActivity extends AppCompatActivity {
 
                                }
                            }
+                           if (postSnapshot.getKey().equals("Alfies")) {
+                               if (postSnapshot.hasChild("timeStamp")) {
+                                    alfiesCheck  = "Alfies, Rating: " +
+                                           dataSnapshot.child("Alfies").child("Rating").getValue() + ", Date : " +
+                                           dataSnapshot.child("Alfies").child("timeStamp").getValue();
+
+                               }
+                           }
                        }
                     displayValues();
 
@@ -250,7 +261,7 @@ public class UserLocationActivity extends AppCompatActivity {
         checkInList.add(arthursCheck);
         checkInList.add(grogansCheck);
         checkInList.add(dingleCheck);
-
+        checkInList.add(alfiesCheck);
 
 
             for (int i = 0; i < checkInList.size(); i++) {

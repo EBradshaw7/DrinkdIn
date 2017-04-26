@@ -46,6 +46,9 @@ public class CategoriesScreen extends AppCompatActivity{
                     case 2:  Intent whiskeyIntent = new Intent(CategoriesScreen.this, WhiskeyList.class);
                         startActivity(whiskeyIntent);
                         break;
+                    case 3:  Intent cocktailIntent = new Intent(CategoriesScreen.this, CocktailList.class);
+                        startActivity(cocktailIntent);
+                        break;
 
 
 
