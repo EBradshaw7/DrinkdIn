@@ -38,7 +38,7 @@ public class CrawlScreen extends AppCompatActivity {
                                     int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent camdenIntent = new Intent(CrawlScreen.this, CamdenStCrawl.class);
+                        Intent camdenIntent = new Intent(CrawlScreen.this, CamdenStreetCrawl.class);
                         startActivity(camdenIntent);
                         break;
                 }

@@ -2,8 +2,8 @@ package com.example.eoghan.drinkdin;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +16,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-public class CamdenStCrawl extends FragmentActivity implements OnMapReadyCallback {
+/**
+ * Created by Eoghan on 26/04/2017.
+ */
+
+public class CamdenStreetCrawl extends AppCompatActivity implements OnMapReadyCallback {
+
 
     private GoogleMap mMap;
 
@@ -45,12 +50,12 @@ public class CamdenStCrawl extends FragmentActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.homeIcon:
-                Intent i = new Intent(CamdenStCrawl.this, MainActivity.class);
+                Intent i = new Intent(CamdenStreetCrawl.this, MainActivity.class);
                 startActivity(i);
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(CamdenStCrawl.this, LoginActivity.class);
+                Intent j = new Intent(CamdenStreetCrawl.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 
@@ -71,19 +76,20 @@ public class CamdenStCrawl extends FragmentActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-            mMap = googleMap;
+        mMap = googleMap;
 
-            PolylineOptions line = new PolylineOptions().add(new LatLng(53.335368341564546,-6.265381003704874),
-                    new LatLng(53.3348491101932,-6.265434647885172),
-                    new LatLng(53.333449279606704,-6.264920067459116)). width(5).color(Color.RED);
-            mMap.addPolyline(line);
+        PolylineOptions line = new PolylineOptions().add(new LatLng(53.335368341564546,-6.265381003704874),
+                new LatLng(53.3348491101932,-6.265434647885172),
+                new LatLng(53.333449279606704,-6.264920067459116)). width(5).color(Color.RED);
+        mMap.addPolyline(line);
 
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(53.335368341564546,-6.265381003704874)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(53.335368341564546,-6.265381003704874)));
 
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(16));
-            mMap.addMarker(new MarkerOptions().position(new LatLng(53.335368341564546,-6.265381003704874)).title("Karma Stone"));
-            mMap.addMarker(new MarkerOptions().position(new LatLng(53.3348491101932,-6.265434647885172)).title("Camden Exchange"));
-            mMap.addMarker(new MarkerOptions().position(new LatLng(53.333449279606704,-6.264920067459116)).title("Bleeding horse"));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(16));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(53.335368341564546,-6.265381003704874)).title("Karma Stone"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(53.3348491101932,-6.265434647885172)).title("Camden Exchange"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(53.333449279606704,-6.264920067459116)).title("Bleeding horse"));
 
-        }
+    }
 }
+

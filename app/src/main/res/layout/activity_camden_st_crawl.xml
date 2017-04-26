@@ -1,10 +1,40 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.eoghan.drinkdin.CamdenStCrawl"
+    android:layout_width="match_parent" android:layout_height="fill_parent" android:orientation="vertical"
     android:background="#FFB201"
-    />
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_weight="0.08"
+        android:textColor="#000000"
+        android:text="Camden Street Crawl"
+        android:paddingTop="10dp"
+        android:textSize="20sp"
+        />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="333dp"
+        android:background="#FFB201"
+        tools:context="com.example.eoghan.drinkdin.CamdenStCrawl"
+        android:layout_weight="0.08" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_weight="0.08"
+        android:textColor="#000000"
+        android:text="Camden Street is one of Dublins busiest streets. It boasts over 10 pubs in such a small area, garunteeing to find somwhere to cater to your tastes" />
+
+
+</LinearLayout>

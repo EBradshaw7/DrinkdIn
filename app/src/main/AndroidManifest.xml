@@ -38,9 +38,7 @@
         <activity
             android:name=".PorterhouseActivity"
             android:label="@string/title_activity_phouse_map" />
-        <activity
-            android:name=".CamdenStCrawl"
-            android:label="@string/title_activity_wexford_st_crawl" />
+        <activity android:name=".CamdenStreetCrawl"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".NewUserActivity" />
         <activity android:name=".UserAreaActivity" />
