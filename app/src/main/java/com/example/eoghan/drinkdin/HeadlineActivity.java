@@ -155,7 +155,7 @@ public class HeadlineActivity extends AppCompatActivity implements OnMapReadyCal
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(HeadlineActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(HeadlineActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

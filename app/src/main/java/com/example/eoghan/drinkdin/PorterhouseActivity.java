@@ -155,7 +155,7 @@ public class PorterhouseActivity extends AppCompatActivity implements OnMapReady
                 startActivity(i);
                 return true;
             case R.id.userIcon:
-                Intent j = new Intent(PorterhouseActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(PorterhouseActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
             default:

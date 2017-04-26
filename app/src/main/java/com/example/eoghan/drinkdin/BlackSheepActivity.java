@@ -154,7 +154,7 @@ public class BlackSheepActivity extends AppCompatActivity implements OnMapReadyC
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(BlackSheepActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(BlackSheepActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

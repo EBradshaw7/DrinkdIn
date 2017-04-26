@@ -156,7 +156,7 @@ public class GrogansActivity extends AppCompatActivity implements OnMapReadyCall
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(GrogansActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(GrogansActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

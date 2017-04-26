@@ -156,7 +156,7 @@ private TextView ratingTV;
                         startActivity(i);
                         return true;
                     case R.id.userIcon:
-                        Intent j = new Intent(com.example.eoghan.drinkdin.SweetmansActivity.this, UserAreaActivity.class);
+                        Intent j = new Intent(com.example.eoghan.drinkdin.SweetmansActivity.this, LoginActivity.class);
                         startActivity(j);
                         return true;
                     default:

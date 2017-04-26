@@ -156,7 +156,7 @@ public class DingleActivity extends AppCompatActivity implements OnMapReadyCallb
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(DingleActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(DingleActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

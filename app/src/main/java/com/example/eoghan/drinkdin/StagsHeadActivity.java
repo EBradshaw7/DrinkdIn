@@ -156,7 +156,7 @@ public class StagsHeadActivity extends AppCompatActivity implements OnMapReadyCa
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(StagsHeadActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(StagsHeadActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

@@ -156,7 +156,7 @@ public class AlfiesActivity extends AppCompatActivity implements OnMapReadyCallb
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(AlfiesActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(AlfiesActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

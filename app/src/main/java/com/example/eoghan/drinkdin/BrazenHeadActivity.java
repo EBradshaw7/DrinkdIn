@@ -156,7 +156,7 @@ public class BrazenHeadActivity extends AppCompatActivity implements OnMapReadyC
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(BrazenHeadActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(BrazenHeadActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

@@ -22,6 +22,7 @@ import java.util.List;
 public class UserLocationActivity extends AppCompatActivity {
 
     private TextView tvUsername;
+    private TextView tvCheckinCount;
     private TextView tvLastcheckin;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -75,6 +76,7 @@ public class UserLocationActivity extends AppCompatActivity {
 
         tvUsername = (TextView) findViewById(R.id.userNameTV);
         tvLastcheckin = (TextView) findViewById(R.id.lastCheckinTV);
+        tvCheckinCount = (TextView) findViewById(R.id.checkinTv);
 
 
         tvUsername.setText("User: " + user.getEmail());
@@ -264,13 +266,24 @@ public class UserLocationActivity extends AppCompatActivity {
         checkInList.add(alfiesCheck);
 
 
-            for (int i = 0; i < checkInList.size(); i++) {
-                Object item = checkInList.get(i);
-                if (item == null) {
-                    checkInList.remove(i);
-                }
-            }
 
+
+        List<Object> newList = new ArrayList<>();
+
+
+        for (int i = 0; i < checkInList.size(); i++) {
+                Object item = checkInList.get(i);
+                if (item != null) {
+                    newList.add(item);
+
+                }
+
+
+        }
+
+
+        int listSize = newList.size();
+        tvCheckinCount.setText("Check ins: " + listSize);
 
 
       /*  for(String curVal : checkInList){
@@ -289,7 +302,7 @@ public class UserLocationActivity extends AppCompatActivity {
         }*/
 
             ArrayAdapter<Object> adapter = new ArrayAdapter<>(this,
-                    R.layout.activity_list, checkInList);
+                    R.layout.activity_list, newList);
 
 
             ListView checkInLV = (ListView) findViewById(R.id.listCheckin);

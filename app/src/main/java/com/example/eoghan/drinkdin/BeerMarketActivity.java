@@ -156,7 +156,7 @@ public class BeerMarketActivity extends AppCompatActivity implements OnMapReadyC
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(BeerMarketActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(BeerMarketActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

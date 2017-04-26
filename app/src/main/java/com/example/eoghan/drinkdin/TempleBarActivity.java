@@ -156,7 +156,7 @@ public class TempleBarActivity extends AppCompatActivity implements OnMapReadyCa
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(TempleBarActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(TempleBarActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 

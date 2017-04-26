@@ -156,7 +156,7 @@ public class ArthursActivity extends AppCompatActivity implements OnMapReadyCall
                 return true;
 
             case R.id.userIcon:
-                Intent j = new Intent(ArthursActivity.this, UserAreaActivity.class);
+                Intent j = new Intent(ArthursActivity.this, LoginActivity.class);
                 startActivity(j);
                 return true;
 
