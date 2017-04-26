@@ -52,6 +52,7 @@ public class UserLocationActivity extends AppCompatActivity implements View.OnCl
 
     //whiskey
     String dingleCheck;
+    String norseCheck;
 
     //cocktail
     String alfiesCheck;
@@ -231,6 +232,14 @@ public class UserLocationActivity extends AppCompatActivity implements View.OnCl
 
                         }
                     }
+                    if (postSnapshot.getKey().equals("Norseman")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            alfiesCheck = "Norseman, Rating: " +
+                                    dataSnapshot.child("Norseman").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("Norseman").child("timeStamp").getValue();
+
+                        }
+                    }
                 }
                 displayValues();
 
@@ -261,6 +270,7 @@ public class UserLocationActivity extends AppCompatActivity implements View.OnCl
         checkInList.add(grogansCheck);
         checkInList.add(dingleCheck);
         checkInList.add(alfiesCheck);
+        checkInList.add(norseCheck);
 
 
         List<Object> newList = new ArrayList<>();

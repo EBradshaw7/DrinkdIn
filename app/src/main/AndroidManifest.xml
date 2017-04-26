@@ -38,7 +38,7 @@
         <activity
             android:name=".PorterhouseActivity"
             android:label="@string/title_activity_phouse_map" />
-        <activity android:name=".CamdenStreetCrawl"/>
+        <activity android:name=".CamdenStreetCrawl" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".NewUserActivity" />
         <activity android:name=".UserAreaActivity" />
@@ -59,7 +59,9 @@
         <activity android:name=".CocktailList" />
         <activity android:name=".AlfiesActivity" />
         <activity android:name=".NearMeActivity" />
-        <activity android:name=".AdditionalActivity"></activity>
+        <activity android:name=".AdditionalActivity" />
+        <activity android:name=".CreativeCrawl" />
+        <activity android:name=".NorsemanActivity"></activity>
     </application>
 
 </manifest>

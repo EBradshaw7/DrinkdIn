@@ -15,7 +15,8 @@ import android.widget.ListView;
 public class CrawlScreen extends AppCompatActivity {
 
     String[] crawlList = {
-            "Camden Street Crawl"
+            "Camden Street Crawl",
+            "Creative Quarter Cocktail Crawl"
     };
 
     @Override
@@ -40,6 +41,10 @@ public class CrawlScreen extends AppCompatActivity {
                     case 0:
                         Intent camdenIntent = new Intent(CrawlScreen.this, CamdenStreetCrawl.class);
                         startActivity(camdenIntent);
+                        break;
+                    case 1:
+                        Intent createIntent = new Intent(CrawlScreen.this, CreativeCrawl.class);
+                        startActivity(createIntent);
                         break;
                 }
             }

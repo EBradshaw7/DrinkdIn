@@ -25,6 +25,7 @@ public class WhiskeyList extends AppCompatActivity {
 
     //Popullate list views with ratings
     String dingleRating;
+    String norsmanRating;
 
 
     //private ImageView pbar;
@@ -55,10 +56,12 @@ public class WhiskeyList extends AppCompatActivity {
 
                     //pass it to string
                     dingleRating = postSnapshot.child("dingle").child("averageRating").getValue().toString();
+                    norsmanRating = postSnapshot.child("norseman").child("averageRating").getValue().toString();
 
 
                 } else {
                     dingleRating = "Sorry no rating available";
+                    norsmanRating = "Sorry no rating available";
 
                 }
                 setValues();
@@ -79,7 +82,7 @@ public class WhiskeyList extends AppCompatActivity {
         //creating list to display with unicode stars
         String[] guinnessList = {
                 "The Dingle Bar " + dingleRating + "\u2605",
-
+                "The Norseman " + norsmanRating + "\u2605"
         };
 
         //adapter for list
@@ -99,6 +102,10 @@ public class WhiskeyList extends AppCompatActivity {
                     case 0:
                         Intent dingleIntent = new Intent(WhiskeyList.this, DingleActivity.class);
                         startActivity(dingleIntent);
+                        break;
+                    case 1:
+                        Intent norseIntent = new Intent(WhiskeyList.this, NorsemanActivity.class);
+                        startActivity(norseIntent);
                         break;
 
 
