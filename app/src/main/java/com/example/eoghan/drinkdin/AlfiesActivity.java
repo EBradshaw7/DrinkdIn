@@ -179,7 +179,7 @@ public class AlfiesActivity extends AppCompatActivity implements OnMapReadyCallb
         //set camera settings, title and marker at lat and lon
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lon)));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
-        mMap.addMarker(new MarkerOptions()
+        mMap.addMarker(new MarkerOptions() //53.3425732;lon = -6.2646112;
                 .position(new LatLng(lat, lon))
                 .title("Alfies"));
 

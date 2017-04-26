@@ -179,7 +179,7 @@ public class DingleActivity extends AppCompatActivity implements OnMapReadyCallb
         //set camera settings, title and marker at lat and lon
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lon)));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
-        mMap.addMarker(new MarkerOptions()
+        mMap.addMarker(new MarkerOptions() //53.3439254,-6.2715848
                 .position(new LatLng(lat, lon))
                 .title("The Dingle Bar"));
 

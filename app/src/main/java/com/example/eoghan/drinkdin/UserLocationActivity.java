@@ -276,8 +276,17 @@ public class UserLocationActivity extends AppCompatActivity implements View.OnCl
 
         }
 
+
+
+
         int listSize = newList.size();
-        tvCheckinCount.setText("Check ins: " + listSize);
+
+        if (!newList.isEmpty()) {
+            tvCheckinCount.setText("Number of Check-ins: " + listSize);
+        }else {
+            tvCheckinCount.setText("Number of Check-ins: No Checkins, Yet!");
+        }
+
 
         ArrayAdapter<Object> adapter = new ArrayAdapter<>(this,
                 R.layout.activity_list, newList);

@@ -11,6 +11,14 @@
     tools:context="com.example.eoghan.drinkdin.MainActivity"
     android:background="@drawable/back31" >
 
+    <ListView
+        android:id="@+id/listMenu"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true" />
+
     <TextView
         android:text="Please Drink Responsibly"
         android:layout_width="wrap_content"
@@ -20,11 +28,5 @@
         android:id="@+id/textView" />
 
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:id="@+id/listMenu"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 

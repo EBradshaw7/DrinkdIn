@@ -59,7 +59,9 @@
         <activity android:name=".WhiskeyList" />
         <activity android:name=".DingleActivity" />
         <activity android:name=".CocktailList" />
-        <activity android:name=".AlfiesActivity"></activity>
+        <activity android:name=".AlfiesActivity" />
+        <activity android:name=".NearMeActivity" />
+        <activity android:name=".AdditionalActivity"></activity>
     </application>
 
 </manifest>
