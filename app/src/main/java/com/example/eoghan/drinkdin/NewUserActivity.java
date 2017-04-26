@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class NewUserActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnRegister;
@@ -54,18 +55,18 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
 
     private void registerUser(){
         String email = etEmail.getText().toString().trim();
-        String password = etpword.getText().toString().trim();
+        final String password = etpword.getText().toString().trim();
         //String password = "1234";
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this, "enter email", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Can not leave email field blank", Toast.LENGTH_LONG).show();
             return;
         }
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(this, "enter password", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Can not leave password field blank", Toast.LENGTH_LONG).show();
             return;
         }
 
-        pbar.setMessage("waiting");
+        pbar.setMessage("processing");
         pbar.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -75,8 +76,15 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
                         if (task.isSuccessful()) {
                             finish();
                             startActivity(new Intent(new Intent(getApplicationContext(),UserAreaActivity.class)));
-                        } else {
-                            Toast.makeText(NewUserActivity.this, "fail", Toast.LENGTH_LONG).show();
+                        }
+                        else if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+
+                            Toast.makeText(NewUserActivity.this, "Fail, email already in use", Toast.LENGTH_LONG).show();
+
+                        }else if (password.length() < 6){
+
+                            Toast.makeText(NewUserActivity.this, "Fail, password must be atleast 6 characters", Toast.LENGTH_LONG).show();
+
                         }
                         pbar.dismiss();
                     }
