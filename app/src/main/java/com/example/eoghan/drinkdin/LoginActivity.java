@@ -2,9 +2,9 @@ package com.example.eoghan.drinkdin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -46,6 +44,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         backBtn.setOnClickListener(this);
         newUserBtn.setOnClickListener(this);
 
+        getSupportActionBar().setTitle("Login Page");
+
+
         if (firebaseAuth.getCurrentUser() != null){
             finish();
             startActivity(new Intent(getApplicationContext(), UserAreaActivity.class));
@@ -54,18 +55,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void userLogin(){
         String email = emEt.getText().toString().trim();
-        String password = pwEt.getText().toString().trim();
+        final String password = pwEt.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this, "enter email", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Can not leave Email field blank", Toast.LENGTH_LONG).show();
             return;
         }
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(this, "enter password", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Can not leave Password field blank", Toast.LENGTH_LONG).show();
             return;
         }
 
-        pDialog.setMessage("waiting");
+        pDialog.setMessage("Processing");
         pDialog.show();
 
 
@@ -77,6 +78,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()){
                             finish();
                             startActivity(new Intent(getApplicationContext(), UserAreaActivity.class));
+
+                        }else if (password.length() < 6){
+
+                            Toast.makeText(LoginActivity.this, "Fail, password must be atleast 6 characters", Toast.LENGTH_LONG).show();
+
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Fail, Username or Password Incorrect", Toast.LENGTH_LONG).show();
+
                         }
 
                     }

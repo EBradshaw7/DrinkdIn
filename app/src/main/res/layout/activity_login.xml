@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="eoghan.bradshaw@gmail.com"
+        android:hint="Email"
         android:layout_above="@+id/editTextPassword"
         android:layout_alignStart="@+id/textView7"
         android:layout_alignEnd="@+id/textView7" />
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="nahgoe"
+        android:hint="Password"
         android:layout_above="@+id/lgBtn"
         android:layout_alignStart="@+id/etEmail"
         android:layout_alignEnd="@+id/etEmail" />

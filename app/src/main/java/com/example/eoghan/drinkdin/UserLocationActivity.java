@@ -3,7 +3,9 @@ package com.example.eoghan.drinkdin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserLocationActivity extends AppCompatActivity {
+public class UserLocationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvUsername;
     private TextView tvCheckinCount;
@@ -27,8 +29,9 @@ public class UserLocationActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
-    String lastCheckin;
 
+    Button backBtn;
+    String lastCheckin;
 
 
     //String checkinList;
@@ -61,26 +64,21 @@ public class UserLocationActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser() == null){
+        if (firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, MainActivity.class));
         }
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-
-       /* if (lastCheckin == null){
-            lastCheckin = "No Last Checkin Stored";
-        }*/
-
+        backBtn = (Button) findViewById(R.id.backButton);
+        backBtn.setOnClickListener(this);
 
         tvUsername = (TextView) findViewById(R.id.userNameTV);
         tvLastcheckin = (TextView) findViewById(R.id.lastCheckinTV);
         tvCheckinCount = (TextView) findViewById(R.id.checkinTv);
 
-
         tvUsername.setText("User: " + user.getEmail());
-
 
 
         //call method to show data
@@ -95,15 +93,16 @@ public class UserLocationActivity extends AppCompatActivity {
         getLastCheckin.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot postSnapshot) {
-                if (postSnapshot.exists()){
-                        if (postSnapshot.child("lascheckin").getValue() != null) {
-                            lastCheckin = "Last Check-in: " + postSnapshot.child("lascheckin").getValue();
-                        }else {
-                            lastCheckin = "Last Check-in: No last check-in found";
-                        }
+                if (postSnapshot.exists()) {
+                    if (postSnapshot.child("lascheckin").getValue() != null) {
+                        lastCheckin = "Last Check-in: " + postSnapshot.child("lascheckin").getValue();
+                    } else {
+                        lastCheckin = "Last Check-in: No last check-in found";
+                    }
                 }
                 setInfo();
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -120,133 +119,131 @@ public class UserLocationActivity extends AppCompatActivity {
 
 
     private void showCheckins() {
-            databaseReference = FirebaseDatabase.getInstance().getReference();
-            Query showCheckinInfo = databaseReference.child("checkin").child(firebaseAuth.getCurrentUser().getUid());
-            showCheckinInfo.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                       for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        Query showCheckinInfo = databaseReference.child("checkin").child(firebaseAuth.getCurrentUser().getUid());
+        showCheckinInfo.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                           if (postSnapshot.getKey().equals("Porterhouse")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   phouseCheck = "Porterhouse, Rating: " +
-                                       dataSnapshot.child("Porterhouse").child("Rating").getValue() + ", Date : " +
-                                       dataSnapshot.child("Porterhouse").child("timeStamp").getValue();
-                                }
+                    if (postSnapshot.getKey().equals("Porterhouse")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            phouseCheck = "Porterhouse, Rating: " +
+                                    dataSnapshot.child("Porterhouse").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("Porterhouse").child("timeStamp").getValue();
+                        }
 
-                           }
-                           if (postSnapshot.getKey().equals("sweetmans")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   sweetmansCheck = "Sweetmans, Rating: " +
-                                       dataSnapshot.child("sweetmans").child("Rating").getValue() + ", Date : " +
-                                       dataSnapshot.child("sweetmans").child("timeStamp").getValue();
+                    }
+                    if (postSnapshot.getKey().equals("sweetmans")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            sweetmansCheck = "Sweetmans, Rating: " +
+                                    dataSnapshot.child("sweetmans").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("sweetmans").child("timeStamp").getValue();
 
-                                }
+                        }
 
-                           }
-                           if (postSnapshot.getKey().equals("Beermarket")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   beermarketCheck = "BeerMarket, Rating: " +
-                                       dataSnapshot.child("Beermarket").child("Rating").getValue() + ", Date : " +
-                                       dataSnapshot.child("Beermarket").child("timeStamp").getValue();
+                    }
+                    if (postSnapshot.getKey().equals("Beermarket")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            beermarketCheck = "BeerMarket, Rating: " +
+                                    dataSnapshot.child("Beermarket").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("Beermarket").child("timeStamp").getValue();
 
-                                }
+                        }
 
-                           }
-                           if (postSnapshot.getKey().equals("Headline")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   headlineCheck = "Headline, Rating: " +
-                                       dataSnapshot.child("Headline").child("Rating").getValue() +  ", Date : " +
-                                       dataSnapshot.child("Headline").child("timeStamp").getValue();
+                    }
+                    if (postSnapshot.getKey().equals("Headline")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            headlineCheck = "Headline, Rating: " +
+                                    dataSnapshot.child("Headline").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("Headline").child("timeStamp").getValue();
 
-                                }
+                        }
 
-                           }
-                           if (postSnapshot.getKey().equals("BlackSheep")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   blackSheepCheck = "Black Sheep, Rating: " +
-                                       dataSnapshot.child("BlackSheep").child("Rating").getValue() + ", Date : " +
-                                       dataSnapshot.child("BlackSheep").child("timeStamp").getValue();
+                    }
+                    if (postSnapshot.getKey().equals("BlackSheep")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            blackSheepCheck = "Black Sheep, Rating: " +
+                                    dataSnapshot.child("BlackSheep").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("BlackSheep").child("timeStamp").getValue();
 
-                                }
+                        }
 
-                           }
-                           if (postSnapshot.getKey().equals("BrazenHead")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   brazenheadCheck = "Brazen Head, Rating: " +
-                                       dataSnapshot.child("BrazenHead").child("Rating").getValue() + ", Date : " +
-                                       dataSnapshot.child("BrazenHead").child("timeStamp").getValue();
+                    }
+                    if (postSnapshot.getKey().equals("BrazenHead")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            brazenheadCheck = "Brazen Head, Rating: " +
+                                    dataSnapshot.child("BrazenHead").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("BrazenHead").child("timeStamp").getValue();
 
-                                }
+                        }
 
-                           }
-                           if (postSnapshot.getKey().equals("TempleBar")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   templebarCheck = "Temple Bar, Rating: " +
-                                       dataSnapshot.child("TempleBar").child("Rating").getValue() + ", Date : " +
-                                       dataSnapshot.child("TempleBar").child("timeStamp").getValue();
-                                 }
+                    }
+                    if (postSnapshot.getKey().equals("TempleBar")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            templebarCheck = "Temple Bar, Rating: " +
+                                    dataSnapshot.child("TempleBar").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("TempleBar").child("timeStamp").getValue();
+                        }
 
-                           }
-                           if (postSnapshot.getKey().equals("StagsHead")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   stagsheadCheck = "Stags Head, Rating: " +
-                                           dataSnapshot.child("StagsHead").child("Rating").getValue() + ", Date : " +
-                                           dataSnapshot.child("StagsHead").child("timeStamp").getValue();
+                    }
+                    if (postSnapshot.getKey().equals("StagsHead")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            stagsheadCheck = "Stags Head, Rating: " +
+                                    dataSnapshot.child("StagsHead").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("StagsHead").child("timeStamp").getValue();
 
-                               }
+                        }
 
-                           }
+                    }
 
-                           if (postSnapshot.getKey().equals("Arthurs")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   arthursCheck = "Arthurs, Rating: " +
-                                           dataSnapshot.child("Arthurs").child("Rating").getValue() + ", Date : " +
-                                           dataSnapshot.child("Arthurs").child("timeStamp").getValue();
+                    if (postSnapshot.getKey().equals("Arthurs")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            arthursCheck = "Arthurs, Rating: " +
+                                    dataSnapshot.child("Arthurs").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("Arthurs").child("timeStamp").getValue();
 
-                               }
+                        }
 
-                           }
+                    }
 
-                           if (postSnapshot.getKey().equals("Grogans")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   grogansCheck = "Grogans, Rating: " +
-                                           dataSnapshot.child("Grogans").child("Rating").getValue() + ", Date : " +
-                                           dataSnapshot.child("Grogans").child("timeStamp").getValue();
+                    if (postSnapshot.getKey().equals("Grogans")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            grogansCheck = "Grogans, Rating: " +
+                                    dataSnapshot.child("Grogans").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("Grogans").child("timeStamp").getValue();
 
-                               }
-                           }
-                           if (postSnapshot.getKey().equals("Dingle")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                   dingleCheck = "Dingle, Rating: " +
-                                           dataSnapshot.child("Dingle").child("Rating").getValue() + ", Date : " +
-                                           dataSnapshot.child("Dingle").child("timeStamp").getValue();
+                        }
+                    }
+                    if (postSnapshot.getKey().equals("Dingle")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            dingleCheck = "Dingle, Rating: " +
+                                    dataSnapshot.child("Dingle").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("Dingle").child("timeStamp").getValue();
 
-                               }
-                           }
-                           if (postSnapshot.getKey().equals("Alfies")) {
-                               if (postSnapshot.hasChild("timeStamp")) {
-                                    alfiesCheck  = "Alfies, Rating: " +
-                                           dataSnapshot.child("Alfies").child("Rating").getValue() + ", Date : " +
-                                           dataSnapshot.child("Alfies").child("timeStamp").getValue();
+                        }
+                    }
+                    if (postSnapshot.getKey().equals("Alfies")) {
+                        if (postSnapshot.hasChild("timeStamp")) {
+                            alfiesCheck = "Alfies, Rating: " +
+                                    dataSnapshot.child("Alfies").child("Rating").getValue() + ", Date : " +
+                                    dataSnapshot.child("Alfies").child("timeStamp").getValue();
 
-                               }
-                           }
-                       }
-                    displayValues();
-
+                        }
+                    }
                 }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                displayValues();
 
-                }
-            });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
-
-
-
-        }
+    }
 
     private void displayValues() {
 
@@ -266,50 +263,38 @@ public class UserLocationActivity extends AppCompatActivity {
         checkInList.add(alfiesCheck);
 
 
-
-
         List<Object> newList = new ArrayList<>();
 
 
         for (int i = 0; i < checkInList.size(); i++) {
-                Object item = checkInList.get(i);
-                if (item != null) {
-                    newList.add(item);
+            Object item = checkInList.get(i);
+            if (item != null) {
+                newList.add(item);
 
-                }
+            }
 
 
         }
-
 
         int listSize = newList.size();
         tvCheckinCount.setText("Check ins: " + listSize);
 
-
-      /*  for(String curVal : checkInList){
-            if(curVal.contains("notChecked") || curVal.contains("null")){
-                checkInList.remove(curVal);
-            }
-        }*/
-
-       /*//tring remove = "notChecked";
-        Iterator<String> it = checkInList.iterator();
-        while (it.hasNext()) {
-                if (it.next().equals("notChecked")) {
-                    it.remove();
-                }
-
-        }*/
-
-            ArrayAdapter<Object> adapter = new ArrayAdapter<>(this,
-                    R.layout.activity_list, newList);
+        ArrayAdapter<Object> adapter = new ArrayAdapter<>(this,
+                R.layout.activity_list, newList);
 
 
-            ListView checkInLV = (ListView) findViewById(R.id.listCheckin);
-            checkInLV.setAdapter(adapter);
+        ListView checkInLV = (ListView) findViewById(R.id.listCheckin);
+        checkInLV.setAdapter(adapter);
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == backBtn) {
+            startActivity(new Intent(this, UserAreaActivity.class));
 
         }
     }
 
+}

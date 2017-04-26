@@ -35,6 +35,9 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        getSupportActionBar().setTitle("New User");
+
+
         btnRegister = (Button) findViewById(R.id.btnCreate);
         etEmail = (EditText) findViewById(R.id.emET);
         etpword = (EditText) findViewById(R.id.passwordET);
